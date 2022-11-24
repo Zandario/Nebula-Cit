@@ -1,6 +1,6 @@
-#ifndef CONTENT_PACK_NEOAVIANS
-#define CONTENT_PACK_NEOAVIANS
-#include "_neoavians.dm"
+#ifndef CONTENT_PACK_TESHARI
+#define CONTENT_PACK_TESHARI
+#include "_teshari.dm"
 #include "clothing.dm"
 #include "machinery/suit_cycler.dm"
 #include "datum/language.dm"

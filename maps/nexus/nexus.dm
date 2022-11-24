@@ -9,7 +9,7 @@
 	//Species
 
 	#include "../../mods/species/utility_frames/_utility_frames.dme"
-	#include "../../mods/species/neoavians/_neoavians.dme"
+	#include "../../mods/species/teshari/_neoavians.dme"
 
 	#include "nexus_areas.dm"
 	#include "nexus_departments.dm"
