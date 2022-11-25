@@ -24,18 +24,15 @@
 
 	meat_type = /obj/item/chems/food/meat/chicken
 
-	base_color = "#252525"
-	base_eye_color = "#f5c842"
-	base_markings = list(/decl/sprite_accessory/marking/teshari = "#454545")
+	base_color = "#001144"
+	base_eye_color = "#43a5de"
+	base_markings = list(/decl/sprite_accessory/marking/teshari = "#747070")
 	default_h_style = /decl/sprite_accessory/hair/teshari
 
 	preview_outfit = /decl/hierarchy/outfit/job/generic/assistant/teshari
 
 	available_bodytypes = list(
 		/decl/bodytype/teshari,
-		/decl/bodytype/teshari/additive,
-		/decl/bodytype/teshari/raptor,
-		/decl/bodytype/teshari/additive/raptor
 	)
 
 	total_health = 120
@@ -94,6 +91,6 @@
 	eye_icon = 'mods/species/teshari/icons/eyes.dmi'
 
 /decl/hierarchy/outfit/job/generic/assistant/teshari
-	name = "Job - Avian Assistant"
+	name = "Job - Teshari Assistant"
 	uniform = /obj/item/clothing/under/teshari_smock/worker
 	shoes = /obj/item/clothing/shoes/teshari/footwraps
