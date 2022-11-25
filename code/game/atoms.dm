@@ -7,17 +7,27 @@
 	var/last_bumped = 0
 	var/pass_flags = 0
 	var/throwpass = 0
-	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
-	var/simulated = 1 //filter for actions - used by lighting overlays
-	var/fluorescent // Shows up under a UV light.
-	var/datum/reagents/reagents // chemical contents.
+	/// The higher the germ level, the more germ on the atom.
+	var/germ_level = GERM_LEVEL_AMBIENT
+	/// Filter for actions - used by lighting overlays.
+	var/simulated = 1
+	/// Shows up under a UV light.
+	var/fluorescent
+	/// chemical contents.
+	var/datum/reagents/reagents
 	var/list/climbers
 	var/climb_speed_mult = 1
 	var/explosion_resistance = 0
-	var/icon_scale_x = 1 // Holds state of horizontal scaling applied.
-	var/icon_scale_y = 1 // Ditto, for vertical scaling.
-	var/icon_rotation = 0 // And one for rotation as well.
-	var/transform_animate_time = 0 // If greater than zero, transform-based adjustments (scaling, rotating) will visually occur over this time.
+	/// Used for changing icon states for different base sprites.
+	var/base_icon_state
+	/// Holds state of horizontal scaling applied.
+	var/icon_scale_x = 1
+	/// Holds state of vertical scaling applied.
+	var/icon_scale_y = 1
+	/// Holds state of rotation applied.
+	var/icon_rotation = 0
+	/// If greater than zero, transform-based adjustments (scaling, rotating) will visually occur over this time.
+	var/transform_animate_time = 0
 	var/tmp/currently_exploding = FALSE
 	var/tmp/default_pixel_x
 	var/tmp/default_pixel_y

@@ -12,7 +12,7 @@
 	alpha = 192 // Plane and alpha modified for mapping, reset to normal on spawn.
 	layer = ABOVE_TILE_LAYER
 	var/dpdir = 0		// bitmask of pipe directions
-	var/base_icon_state	// initial icon state on map
+	base_icon_state	// initial icon state on map
 	var/sort_type = ""
 	var/turn = DISPOSAL_FLIP_NONE
 	var/flipped_state // If it has a mirrored version, this is the typepath for it.

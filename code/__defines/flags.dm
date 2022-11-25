@@ -47,6 +47,7 @@ The latter will result in a linter warning and will not work correctly.
 #define ATOM_FLAG_NO_DISSOLVE             BITFLAG(10) // Bypasses solvent reactions in the container.
 #define ATOM_FLAG_NO_PHASE_CHANGE         BITFLAG(11) // Bypasses heating and cooling product reactions in the container.
 #define ATOM_FLAG_BLOCK_DIAGONAL_FACING   BITFLAG(12) // Atom cannot face non-cardinal directions.
+#define ATOM_FLAG_HTML_USE_INITAL_ICON    BITFLAG(13) // Should we use the initial icon for display? Mostly used by overlay only objects.
 
 #define ATOM_IS_OPEN_CONTAINER(A)         (A.atom_flags & ATOM_FLAG_OPEN_CONTAINER)
 
@@ -101,3 +102,12 @@ The latter will result in a linter warning and will not work correctly.
 // Decl-level flags (/decl/var/decl_flags)
 #define DECL_FLAG_ALLOW_ABSTRACT_INIT     BITFLAG(0) // Abstract subtypes without this set will CRASH() if fetched with GET_DECL().
 #define DECL_FLAG_MANDATORY_UID           BITFLAG(1) // Requires uid to be non-null.
+
+// Atom-level flags for (/atom/var/smoothing_flags)
+#define SMOOTHING_FLAG_CORNERS            BITFLAG(0)  // Smoothing system in where adjacencies are calculated and used to build an image by mounting each corner at runtime.
+#define SMOOTHING_FLAG_BITMASK            BITFLAG(1)  // Smoothing system in where adjacencies are calculated and used to select a pre-baked icon_state, encoded by bitmasking.
+#define SMOOTHING_FLAG_DIAGONAL_CORNERS   BITFLAG(2)  // Atom has diagonal corners, with underlays under them.
+#define SMOOTHING_FLAG_BORDER             BITFLAG(3)  // Atom will smooth with the borders of the map.
+#define SMOOTHING_FLAG_QUEUED             BITFLAG(4)  // Atom is currently queued to smooth.
+#define SMOOTHING_FLAG_OBJ                BITFLAG(5)  // Smooths with objects, and will thus need to scan turfs for contents.
+#define SMOOTHING_FLAG_CUSTOM             BITFLAG(6)  // This is a temporary flag for supporting older smoothing systems.

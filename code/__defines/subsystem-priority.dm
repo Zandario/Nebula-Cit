@@ -7,6 +7,7 @@
 
 // SS_TICKER
 #define SS_PRIORITY_OVERLAY        100 // Applies overlays. May cause overlay pop-in if it gets behind.
+#define SS_PRIORITY_SMOOTHING      100 // Applies icon smoothing.
 #define SS_PRIORITY_TIMER          20
 
 // Normal

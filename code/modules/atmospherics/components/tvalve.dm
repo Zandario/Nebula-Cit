@@ -1,7 +1,7 @@
 /obj/machinery/atmospherics/tvalve
 	icon = 'icons/atmos/tvalve.dmi'
 	icon_state = "map_tvalve0"
-	var/base_icon_state = "tvalve"
+	base_icon_state = "tvalve"
 
 	name = "manual switching valve"
 	desc = "A pipe valve."
@@ -43,7 +43,7 @@
 
 /obj/machinery/atmospherics/tvalve/proc/paired_dirs() // these two dirs are connected
 	if(state) // "go to side"
-		return list(turn(dir, 180), turn(dir, -90)) 
+		return list(turn(dir, 180), turn(dir, -90))
 	else      // "go straight"
 		return list(turn(dir, 180), dir)
 
@@ -156,11 +156,11 @@
 		"valve_toggle" = /decl/public_access/public_method/tvalve_toggle
 	)
 
-//Mirrored editions		
+//Mirrored editions
 /obj/machinery/atmospherics/tvalve/mirrored
 	icon_state = "map_tvalvem0"
 	base_icon_state = "tvalvem"
-	
+
 	connect_dir_type = SOUTH | EAST | NORTH
 	build_icon_state = "map_tvalvem0"
 	base_type = /obj/machinery/atmospherics/tvalve/mirrored/buildable
@@ -179,7 +179,7 @@
 	desc = "A digitally controlled valve."
 	icon = 'icons/atmos/digital_tvalve.dmi'
 	icon_state = "map_tvalve0"
-	
+
 	build_icon = 'icons/atmos/digital_tvalve.dmi'
 	build_icon_state = "map_tvalve0"
 

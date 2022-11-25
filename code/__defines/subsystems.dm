@@ -54,6 +54,7 @@
 #define SS_INIT_ZCOPY           -8
 #define SS_INIT_XENOARCH        -10
 #define SS_INIT_TICKER          -20
+#define SS_INIT_ICON_SMOOTHING  -30
 #define SS_INIT_UNIT_TESTS      -100
 
 // SS runlevels

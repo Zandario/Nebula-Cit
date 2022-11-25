@@ -6,7 +6,7 @@
 #define N_NORTHEAST 32
 #define N_NORTHWEST 512
 #define N_SOUTHEAST 64
-#define N_SOUTHWEST 1024 
+#define N_SOUTHWEST 1024
 
 #define CORNER_NONE             0
 #define CORNER_COUNTERCLOCKWISE 1
@@ -17,6 +17,9 @@
 #define CORNER_NORTHSOUTH       CORNER_CLOCKWISE
 
 #define FIRST_DIR(X) ((X) & -(X))
+
+/// Inverse direction, taking into account UP|DOWN if necessary.
+#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
 
 /*
 	turn() is weird:

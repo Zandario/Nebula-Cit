@@ -20,7 +20,7 @@
 	var/selected_color = "white"
 
 	var/list/material_overlays = list()
-	var/base_icon_state = "autolathe"
+	base_icon_state = "autolathe"
 	var/image/panel_image
 
 	var/list/queued_orders = list()

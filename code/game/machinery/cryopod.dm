@@ -146,7 +146,7 @@
 	anchored = 1
 	dir = WEST
 
-	var/base_icon_state = "body_scanner_0"
+	base_icon_state = "body_scanner_0"
 	var/occupied_icon_state = "body_scanner_1"
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"

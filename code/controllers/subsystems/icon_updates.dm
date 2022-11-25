@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(icon_update)
 		return
 
 	while (queue_refs.len)
-	
+
 		if(Master.map_loading)
 			return
 
@@ -47,8 +47,7 @@ SUBSYSTEM_DEF(icon_update)
 		else if (MC_TICK_CHECK)
 			return
 
-/atom
-	var/icon_update_queued = FALSE
+/atom/var/icon_update_queued = FALSE
 
 /atom/proc/queue_icon_update(...)
 	// Skips if this is already queued
@@ -61,7 +60,7 @@ SUBSYSTEM_DEF(icon_update)
 		var/length = length(SSicon_update.queue_refs)
 		SSicon_update.queue_args.len = length
 		SSicon_update.queue_args[length] = args.len ? args : null
-	
+
 		// SSicon_update sleeps when it runs out of things in its
 		// queue, so wake it up.
 		SSicon_update.wake()
