@@ -6,11 +6,11 @@
 	limb_blend        = ICON_MULTIPLY
 	bodytype_flag     = BODY_FLAG_TESHARI
 
-	var/tail       = "tail_teshari"
-	var/tail_icon  = 'mods/species/teshari/icons/tail.dmi'
-	var/tail_blend = ICON_MULTIPLY
-	var/tail_hair
-	var/tail_hair_blend
+	var/tail_icon       = 'mods/species/teshari/icons/tail.dmi'
+	var/tail            = "tail_teshari"
+	var/tail_blend      = ICON_MULTIPLY
+	var/tail_hair       = "tail_teshari_over"
+	var/tail_hair_blend = ICON_MULTIPLY
 	var/tail_states
 	var/tail_animation
 

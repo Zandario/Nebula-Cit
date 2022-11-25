@@ -1,5 +1,5 @@
 /decl/loadout_category/teshari
-	name = "Avian"
+	name = "Teshari"
 
 /decl/loadout_option/teshari
 	whitelisted = list(SPECIES_TESHARI)
@@ -7,7 +7,7 @@
 	abstract_type = /decl/loadout_option/teshari
 
 /decl/loadout_option/teshari/uniform_selection
-	name = "Neo-Avian uniform selection"
+	name = "Teshari Smock Selection"
 	path = /obj/item/clothing/under/teshari_smock
 	slot = slot_w_uniform_str
 
@@ -30,3 +30,9 @@
 	path  = /obj/item/clothing/shoes/teshari/footwraps
 	flags = GEAR_HAS_COLOR_SELECTION
 	slot  = slot_shoes_str
+
+
+/decl/loadout_option/teshari/hoodedcloak
+	name = "Teshari Hooded Cloak"
+	path = /obj/item/clothing/suit/storage/toggle/teshari_hoodedcloak
+	slot = slot_wear_suit_str

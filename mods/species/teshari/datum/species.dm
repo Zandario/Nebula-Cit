@@ -2,18 +2,18 @@
 	chargen_min_index = 3
 	chargen_max_index = 6
 	standalone_value_descriptors = list(
-		"a hatchling" =     1,
-		"an fledgeling" =   6,
-		"a young adult" =  12,
-		"an adult" =       25,
-		"middle-aged" =    35,
-		"aging" =          45,
-		"elderly" =        50
+		"a hatchling"   = 1,
+		"an fledgeling" = 6,
+		"a young adult" = 12,
+		"an adult"      = 25,
+		"middle-aged"   = 35,
+		"aging"         = 45,
+		"elderly"       = 50,
 	)
 
 /decl/species/teshari
 	name = SPECIES_TESHARI
-	name_plural = "Teshari"
+	name_plural = "Tesharii"
 	description = "A race of feathered raptors who developed alongside the Skrell, inhabiting the polar tundral regions outside of \
 	Skrell territory. Extremely fragile, they developed hunting skills that emphasized taking out their prey without themselves getting hit."
 
@@ -24,8 +24,8 @@
 
 	meat_type = /obj/item/chems/food/meat/chicken
 
-	base_color = "#001144"
-	base_eye_color = "#43a5de"
+	base_color = "#5F7BB0"
+	base_eye_color = "#051118"
 	base_markings = list(/decl/sprite_accessory/marking/teshari = "#747070")
 	default_h_style = /decl/sprite_accessory/hair/teshari
 
@@ -74,7 +74,6 @@
 	available_cultural_info = list(
 		TAG_CULTURE = list(
 			/decl/cultural_info/culture/teshari,
-			/decl/cultural_info/culture/teshari/saurian,
 			/decl/cultural_info/culture/other,
 		)
 	)
