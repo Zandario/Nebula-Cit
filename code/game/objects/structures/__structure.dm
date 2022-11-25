@@ -35,6 +35,11 @@
 		reinf_material = GET_DECL(reinf_material)
 	. = ..()
 	update_materials()
+	if(smoothing_flags & (SMOOTHING_FLAG_CORNERS|SMOOTHING_FLAG_BITMASK))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+		if(smoothing_flags & SMOOTHING_FLAG_CORNERS)
+			icon_state = ""
 	if(!CanFluidPass())
 		fluid_update(TRUE)
 

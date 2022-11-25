@@ -37,7 +37,7 @@
 		SSicon_smooth.add_to_queue(thing_to_queue); \
 	};
 
-#define QUEUE_SMOOTHING_FLAG_NEIGHBORS(thing_to_queue) \
+#define QUEUE_SMOOTH_NEIGHBORS(thing_to_queue) \
 	for(var/neighbor in orange(1, thing_to_queue)) { \
 		var/atom/atom_neighbor = neighbor; QUEUE_SMOOTH(atom_neighbor); \
 	};

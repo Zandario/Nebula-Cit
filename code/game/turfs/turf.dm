@@ -68,6 +68,15 @@
 	else
 		luminosity = 1
 
+	if(length(smoothing_groups))
+		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
+	if(length(atom_can_smooth_with))
+		sortTim(atom_can_smooth_with)
+		if(atom_can_smooth_with[length(atom_can_smooth_with)] > MAX_S_TURF) //If the last element is higher than the maximum turf-only value, then it must scan turf contents for smoothing targets.
+			smoothing_flags |= SMOOTHING_FLAG_OBJ
+	if(smoothing_flags & (SMOOTHING_FLAG_CORNERS|SMOOTHING_FLAG_BITMASK))
+		QUEUE_SMOOTH(src)
+
 	SSambience.queued += src
 
 	if (opacity)
