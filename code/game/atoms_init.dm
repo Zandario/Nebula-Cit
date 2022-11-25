@@ -49,7 +49,6 @@
  * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
  * the item being completely unclickable)
  *
- * !Note: Ignore the note below until the first two lines of the proc are uncommented. -Zandario
  * You must not sleep in this proc, or any subprocs
  *
  * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
@@ -57,7 +56,7 @@
  *
  * Must return an [initialization hint][INITIALIZE_HINT_NORMAL] or a runtime will occur.
  *
- * !Note: the following functions don't call the base for optimization and must copypasta handling:
+ *! Note: the following functions don't call the base for optimization and must copypasta handling:
  * * [/turf/proc/Initialize]
  */
 /atom/proc/Initialize(mapload, ...)

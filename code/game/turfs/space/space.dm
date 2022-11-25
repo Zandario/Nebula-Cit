@@ -37,7 +37,7 @@
 	if(edge) //Magic edges
 		appearance = SSskybox.mapedge_cache["[edge]"]
 	else //Dust
-		appearance = SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]
+		appearance = SSskybox.dust_cache[SPACE_ICON_STATE(x, y, z)]
 
 	if(!HasBelow(z))
 		return INITIALIZE_HINT_NORMAL
@@ -57,7 +57,7 @@
 		return
 
 	if(!direction) //Stopping our transit
-		appearance = SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]
+		appearance = SSskybox.dust_cache[SPACE_ICON_STATE(x, y, z)]
 	else if(direction & (NORTH|SOUTH)) //Starting transit vertically
 		var/x_shift = SSskybox.phase_shift_by_x[x % (SSskybox.phase_shift_by_x.len - 1) + 1]
 		var/transit_state = ((direction & SOUTH ? world.maxy - y : y) + x_shift) % 15

@@ -1,78 +1,32 @@
-/turf/simulated/wall/proc/update_material(var/update_neighbors)
-	if(construction_stage != -1)
-		if(reinf_material)
-			construction_stage = 6
-		else
-			construction_stage = null
-	if(!material)
-		material = GET_DECL(get_default_material())
-	if(material)
-		explosion_resistance = material.explosion_resistance
-	if(reinf_material && reinf_material.explosion_resistance > explosion_resistance)
-		explosion_resistance = reinf_material.explosion_resistance
-	update_strings()
-	set_opacity(material.opacity >= 0.5)
-	SSradiation.resistance_cache.Remove(src)
-	if(update_neighbors)
-		var/iterate_turfs = list()
-		for(var/turf/simulated/wall/W in RANGE_TURFS(src, 1))
-			W.wall_connections = null
-			W.other_connections = null
-			iterate_turfs += W
-		for(var/turf/simulated/wall/W as anything in iterate_turfs)
-			W.update_icon()
-	else
-		wall_connections = null
-		other_connections = null
-		update_icon()
+var/global/list/wall_blend_objects = list(
+	/obj/machinery/door,
+	/obj/structure/wall_frame,
+	/obj/structure/grille,
+	/obj/structure/window/reinforced/full,
+	/obj/structure/window/reinforced/polarized/full,
+	/obj/structure/window/shuttle,
+	/obj/structure/window/borosilicate/full,
+	/obj/structure/window/borosilicate_reinforced/full
+)
+var/global/list/wall_noblend_objects = list(
+	/obj/machinery/door/window
+)
+var/global/list/wall_fullblend_objects = list(
+	/obj/structure/wall_frame
+)
 
-/turf/simulated/wall/proc/paint_wall(var/new_paint_color)
-	paint_color = new_paint_color
+/turf/simulated/wall/proc/can_join_with(turf/simulated/wall/target_wall)
+	if(material && istype(target_wall.material))
+		var/other_wall_icon = target_wall.get_wall_icon()
+		if(material.wall_blend_icons[other_wall_icon])
+			return 2
+		if(get_wall_icon() == other_wall_icon)
+			return 1
+	return 0
+
+/turf/simulated/wall/custom_smooth(dirs)
+	smoothing_junction = dirs
 	update_icon()
-
-/turf/simulated/wall/proc/stripe_wall(var/new_paint_color)
-	stripe_color = new_paint_color
-	update_icon()
-
-/turf/simulated/wall/proc/update_strings()
-	if(reinf_material)
-		SetName("reinforced [material.solid_name] [material.wall_name]")
-		desc = "It seems to be a section of hull reinforced with [reinf_material.solid_name] and plated with [material.solid_name]."
-	else
-		SetName("[material.solid_name] [material.wall_name]")
-		desc = "It seems to be a section of hull plated with [material.solid_name]."
-
-/turf/simulated/wall/proc/get_default_material()
-	. = DEFAULT_WALL_MATERIAL
-
-/turf/simulated/wall/proc/set_material(var/decl/material/newmaterial, var/decl/material/newrmaterial, var/decl/material/newgmaterial)
-
-	material = newmaterial
-	if(ispath(material, /decl/material))
-		material = GET_DECL(material)
-	else if(!istype(material))
-		PRINT_STACK_TRACE("Wall has been supplied non-material '[newmaterial]'.")
-		material = GET_DECL(get_default_material())
-
-	reinf_material = newrmaterial
-	if(ispath(reinf_material, /decl/material))
-		reinf_material = GET_DECL(reinf_material)
-	else if(!istype(reinf_material))
-		reinf_material = null
-
-	girder_material = newgmaterial
-	if(ispath(girder_material, /decl/material))
-		girder_material = GET_DECL(girder_material)
-	else if(!istype(girder_material))
-		girder_material = null
-
-	update_material()
-
-/turf/simulated/wall/proc/get_wall_icon()
-	. = (istype(material) && material.icon_base) || 'icons/turf/walls/solid.dmi'
-
-/turf/simulated/wall/proc/apply_reinf_overlay()
-	. = istype(reinf_material)
 
 /turf/simulated/wall/on_update_icon()
 	. = ..()
@@ -125,6 +79,7 @@
 	var/material_icon_base = get_wall_icon()
 	var/image/I
 	var/base_color = material.color
+	// Handle fakewalls.
 	if(!density)
 		I = image(material_icon_base, "fwall_open")
 		I.color = base_color
@@ -178,11 +133,24 @@
 			integrity += reinf_material.integrity
 		add_overlay(SSmaterials.wall_damage_overlays[clamp(round(damage / integrity * DAMAGE_OVERLAY_COUNT) + 1, 1, DAMAGE_OVERLAY_COUNT)])
 
-/turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
-	if(material && istype(W.material))
-		var/other_wall_icon = W.get_wall_icon()
-		if(material.wall_blend_icons[other_wall_icon])
-			return 2
-		if(get_wall_icon() == other_wall_icon)
-			return 1
-	return 0
+/turf/simulated/wall/proc/paint_wall(new_paint_color)
+	paint_color = new_paint_color
+	update_icon()
+
+/turf/simulated/wall/proc/stripe_wall(new_paint_color)
+	stripe_color = new_paint_color
+	update_icon()
+
+/turf/simulated/wall/proc/update_strings()
+	if(reinf_material)
+		SetName("reinforced [material.solid_name] [material.wall_name]")
+		desc = "It seems to be a section of hull reinforced with [reinf_material.solid_name] and plated with [material.solid_name]."
+	else
+		SetName("[material.solid_name] [material.wall_name]")
+		desc = "It seems to be a section of hull plated with [material.solid_name]."
+
+/turf/simulated/wall/proc/get_wall_icon()
+	. = (istype(material) && material.icon_base) || 'icons/turf/walls/solid.dmi'
+
+/turf/simulated/wall/proc/apply_reinf_overlay()
+	. = istype(reinf_material)

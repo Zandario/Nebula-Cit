@@ -90,7 +90,7 @@
 
 /turf/simulated/floor/holofloor/space/Initialize()
 	. = ..()
-	icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
+	icon_state = "[SPACE_ICON_STATE(x, y, z)]"
 
 /turf/simulated/floor/holofloor/beach
 	desc = "Uncomfortably gritty for a hologram."

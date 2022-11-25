@@ -1,20 +1,3 @@
-var/global/list/wall_blend_objects = list(
-	/obj/machinery/door,
-	/obj/structure/wall_frame,
-	/obj/structure/grille,
-	/obj/structure/window/reinforced/full,
-	/obj/structure/window/reinforced/polarized/full,
-	/obj/structure/window/shuttle,
-	/obj/structure/window/borosilicate/full,
-	/obj/structure/window/borosilicate_reinforced/full
-)
-var/global/list/wall_noblend_objects = list(
-	/obj/machinery/door/window
-)
-var/global/list/wall_fullblend_objects = list(
-	/obj/structure/wall_frame
-)
-
 /turf/simulated/wall
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
@@ -29,6 +12,8 @@ var/global/list/wall_fullblend_objects = list(
 	color = COLOR_GRAY40
 	atom_flags = ATOM_FLAG_CAN_BE_PAINTED
 
+	smoothing_flags = SMOOTHING_FLAG_CUSTOM
+
 	var/damage = 0
 	var/can_open = 0
 	var/decl/material/material
@@ -38,14 +23,14 @@ var/global/list/wall_fullblend_objects = list(
 	var/hitsound = 'sound/weapons/Genhit.ogg'
 	var/list/wall_connections
 	var/list/other_connections
-	var/floor_type = /turf/simulated/floor/plating //turf it leaves after destruction
+	/// The turf it leaves after destruction.
+	var/floor_type = /turf/simulated/floor/plating
 	var/paint_color
 	var/stripe_color
 	var/handle_structure_blending = TRUE
 
-/turf/simulated/wall/Initialize(var/ml, var/materialtype, var/rmaterialtype)
-
-	..(ml)
+/turf/simulated/wall/Initialize(mapload, materialtype, rmaterialtype)
+	..(mapload)
 
 	// Clear mapping icons.
 	icon = 'icons/turf/walls/solid.dmi'
@@ -65,13 +50,25 @@ var/global/list/wall_fullblend_objects = list(
 	if(ispath(girder_material, /decl/material))
 		girder_material = GET_DECL(girder_material)
 
+	if(smoothing_flags & SMOOTHING_FLAG_DIAGONAL_CORNERS && fixed_underlay) //Set underlays for the diagonal walls.
+		var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, plane = DEFAULT_PLANE)
+		if(fixed_underlay["space"])
+			underlay_appearance.icon = 'icons/turf/space.dmi'
+			underlay_appearance.icon_state = SPACE_ICON_STATE(x, y, z)
+			underlay_appearance.plane = SPACE_PLANE
+		else
+			underlay_appearance.icon = fixed_underlay["icon"]
+			underlay_appearance.icon_state = fixed_underlay["icon_state"]
+		fixed_underlay = string_assoc_list(fixed_underlay)
+		underlays += underlay_appearance
+
 	. = INITIALIZE_HINT_LATELOAD
 	set_extension(src, /datum/extension/penetration/proc_call, .proc/CheckPenetration)
 	START_PROCESSING(SSturf, src) //Used for radiation.
 
-/turf/simulated/wall/LateInitialize(var/ml)
+/turf/simulated/wall/LateInitialize(mapload)
 	..()
-	update_material(!ml)
+	update_material(!mapload)
 
 /turf/simulated/wall/Destroy()
 	STOP_PROCESSING(SSturf, src)

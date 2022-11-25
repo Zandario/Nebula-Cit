@@ -324,6 +324,15 @@
 
 	return NO_ADJ_FOUND
 
+// Overridden find type.
+#warn remove this asap
+/turf/simulated/wall/find_type_in_direction(direction)
+	if(!material)
+		return NO_ADJ_FOUND
+	var/turf/simulated/wall/T = get_step(src, direction)
+	if(!T)
+		return NULLTURF_BORDER
+	return (istype(T) && (material.icon_base == T.material?.icon_base))? ADJ_FOUND : NO_ADJ_FOUND
 
 /**
  * Basic smoothing proc. The atom checks for adjacent directions to smooth with and changes the icon_state based on that.
