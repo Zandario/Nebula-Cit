@@ -107,7 +107,7 @@
 	var/list/data = build_ui_data()
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "fission_core.tmpl", name, 400, 600)
+		ui = new(user, src, ui_key, "fission_core.jst", name, 400, 600)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

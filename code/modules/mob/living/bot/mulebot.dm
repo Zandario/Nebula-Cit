@@ -5,7 +5,7 @@
 #define MULE_CALC_MIN 4
 #define MULE_CALC_MAX 10
 #define MULE_PATH_DONE 11
-// IF YOU CHANGE THOSE, UPDATE THEM IN pda.tmpl TOO
+// IF YOU CHANGE THOSE, UPDATE THEM IN pda.jst TOO
 
 /mob/living/bot/mulebot
 	name = "Mulebot"

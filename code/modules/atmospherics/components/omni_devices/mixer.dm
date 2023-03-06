@@ -147,7 +147,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "omni_mixer.tmpl", "Omni Mixer Control", 360, 330)
+		ui = new(user, src, ui_key, "omni_mixer.jst", "Omni Mixer Control", 360, 330)
 		ui.set_initial_data(data)
 
 		ui.open()

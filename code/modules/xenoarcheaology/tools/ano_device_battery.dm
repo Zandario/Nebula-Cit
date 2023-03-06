@@ -89,7 +89,7 @@
 			data["effect_id"] = inserted_battery.battery_effect.artifact_id
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "anomaly_battery_device.tmpl", "Anomaly Power Utiliser", 390, 500)
+		ui = new(user, src, ui_key, "anomaly_battery_device.jst", "Anomaly Power Utiliser", 390, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

@@ -2,7 +2,7 @@
 
 /datum/nano_module/skill_ui
 	var/datum/skillset/skillset
-	var/template = "skill_ui.tmpl"
+	var/template = "skill_ui.jst"
 	var/hide_unskilled = FALSE
 
 /datum/nano_module/skill_ui/New(datum/host, topic_manager, datum/skillset/override)
@@ -41,7 +41,7 @@
 	if(href_list["toggle_hide_unskilled"])
 		hide_unskilled = !hide_unskilled
 		return 1
-	
+
 /datum/nano_module/skill_ui/proc/get_data()
 	return list()
 
@@ -108,7 +108,7 @@ The generic antag version.
 	var/list/max_choices = list(0, 0, 4, 2, 1)
 	var/list/currently_selected
 	var/buff_type = /datum/skill_buff/antag
-	template = "skill_ui_antag.tmpl"
+	template = "skill_ui_antag.jst"
 
 /datum/nano_module/skill_ui/antag/get_data()
 	. = ..()
@@ -238,7 +238,7 @@ Similar, but for off-station jobs (Bearcat, Verne, survivor etc.).
 Admin version, with debugging options.
 */
 /datum/nano_module/skill_ui/admin
-	template = "skill_ui_admin.tmpl"
+	template = "skill_ui_admin.jst"
 
 /datum/nano_module/skill_ui/admin/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.admin_topic_state)
 	..() //Uses different default state.

@@ -77,7 +77,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "body_scanner.tmpl", "Body Scanner", 600, 800)
+		ui = new(user, src, ui_key, "body_scanner.jst", "Body Scanner", 600, 800)
 		ui.set_initial_data(data)
 		ui.open()
 

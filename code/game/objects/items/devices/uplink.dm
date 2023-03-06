@@ -136,7 +136,7 @@
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
-		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = uistate)
+		ui = new(user, src, ui_key, "uplink.jst", title, 450, 600, state = uistate)
 		ui.set_initial_data(data)
 		ui.open()
 

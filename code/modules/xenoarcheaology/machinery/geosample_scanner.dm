@@ -93,11 +93,11 @@
 				to_chat(user, SPAN_INFO("You remove [amount_transferred]u of coolant from [src]."))
 				update_coolant()
 				return TRUE
-	
+
 	//Let base class handle standard interactions
 	if(..())
 		return TRUE
-	
+
 	//Now let people insert whatever into the scanner
 	if(istype(I))
 		if(scanned_item)
@@ -162,7 +162,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "geoscanner.tmpl", "High Res Radiocarbon Spectrometer", 900, 825)
+		ui = new(user, src, ui_key, "geoscanner.jst", "High Res Radiocarbon Spectrometer", 900, 825)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

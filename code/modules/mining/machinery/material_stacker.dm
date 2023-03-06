@@ -1,7 +1,7 @@
 /obj/machinery/material_processing/stacker
 	name = "ingot stacker"
 	icon_state = "stacker"
-	use_ui_template = "material_processing_stacker.tmpl"
+	use_ui_template = "material_processing_stacker.jst"
 	var/stack_max = 50
 	var/list/stacked = list()
 

@@ -112,7 +112,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
+		ui = new(user, src, ui_key, "radio_basic.jst", "[name]", 400, 430)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -769,7 +769,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
+		ui = new(user, src, ui_key, "radio_basic.jst", "[name]", 400, 430)
 		ui.set_initial_data(data)
 		ui.open()
 

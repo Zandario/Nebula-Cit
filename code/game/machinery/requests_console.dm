@@ -117,7 +117,7 @@ var/global/req_console_information = list()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "request_console.tmpl", name, 520, 410)
+		ui = new(user, src, ui_key, "request_console.jst", name, 520, 410)
 		ui.set_initial_data(data)
 		ui.open()
 

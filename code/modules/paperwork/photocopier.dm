@@ -165,7 +165,7 @@
 	//Printer header stuff
 	if(printer)
 		LAZYADD(., printer.ui_data(user))
-	
+
 	//Photocopier stuff
 	LAZYSET(., "src",                "\ref[src]")
 	LAZYSET(., "is_sillicon_mode",   issilicon(user))
@@ -178,8 +178,8 @@
 	var/list/data = ui_data(user, ui_key)
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "photocopier.tmpl", name, 640, 480)
-		ui.add_template("stock_parts_printer_shared", "stock_parts_printer.tmpl") //printer info header
+		ui = new(user, src, ui_key, "photocopier.jst", name, 640, 480)
+		ui.add_template("stock_parts_printer_shared", "stock_parts_printer.jst") //printer info header
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -188,7 +188,7 @@
 
 /obj/machinery/photocopier/OnTopic(user, href_list, state)
 	//We don't plug in the printer's own OnTopic here since we don't want to allow the user control over it
-	
+
 	if(href_list["eject"])
 		eject_item(user)
 		return TOPIC_REFRESH

@@ -8,7 +8,7 @@
 	var/shuttle_tag  // Used to coordinate data in shuttle controller.
 	var/hacked = 0   // Has been emagged, no access restrictions.
 
-	var/ui_template = "shuttle_control_console.tmpl"
+	var/ui_template = "shuttle_control_console.jst"
 
 /obj/machinery/computer/shuttle_control/modify_mapped_vars(map_hash)
 	..()

@@ -142,7 +142,7 @@ var/global/list/internet_uplinks = list()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data)
 	if (!ui)
-		ui = new(user, src, ui_key, "internet_uplink.tmpl", "PLEXUS Uplink Settings", 540, 400, state = state)
+		ui = new(user, src, ui_key, "internet_uplink.jst", "PLEXUS Uplink Settings", 540, 400, state = state)
 		ui.set_initial_data(data)
 		ui.set_auto_update(TRUE)
 		ui.open()

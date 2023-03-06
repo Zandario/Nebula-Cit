@@ -63,6 +63,6 @@
 		data["scan_body"] = "&nbsp;"
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "body_scan_display.tmpl", "Body Scan Display Console", 600, 800)
+		ui = new(user, src, ui_key, "body_scan_display.jst", "Body Scan Display Console", 600, 800)
 		ui.set_initial_data(data)
 		ui.open()

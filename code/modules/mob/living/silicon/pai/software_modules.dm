@@ -42,7 +42,7 @@
 	ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 	if(!ui)
 		// Don't copy-paste this unless you're making a pAI software module!
-		ui = new(user, user, id, "pai_directives.tmpl", "pAI Directives", 450, 600)
+		ui = new(user, user, id, "pai_directives.jst", "pAI Directives", 450, 600)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -108,7 +108,7 @@
 
 	ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 	if(!ui)
-		ui = new(user, user, id, "pai_radio.tmpl", "Radio Configuration", 300, 150)
+		ui = new(user, user, id, "pai_radio.jst", "Radio Configuration", 300, 150)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -133,7 +133,7 @@
 	ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 	if(!ui)
 		// Don't copy-paste this unless you're making a pAI software module!
-		ui = new(user, user, id, "crew_manifest.tmpl", "Crew Manifest", 450, 600)
+		ui = new(user, user, id, "crew_manifest.jst", "Crew Manifest", 450, 600)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -157,7 +157,7 @@
 	ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 	if(!ui)
 		// Don't copy-paste this unless you're making a pAI software module!
-		ui = new(user, user, id, "pai_doorjack.tmpl", "Door Jack", 300, 150)
+		ui = new(user, user, id, "pai_doorjack.jst", "Door Jack", 300, 150)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -248,7 +248,7 @@
 	ui = SSnano.try_update_ui(user, user, id, ui, data, force_open)
 	if(!ui)
 		// Don't copy-paste this unless you're making a pAI software module!
-		ui = new(user, user, id, "pai_atmosphere.tmpl", "Atmosphere Sensor", 350, 300)
+		ui = new(user, user, id, "pai_atmosphere.jst", "Atmosphere Sensor", 350, 300)
 		ui.set_initial_data(data)
 		ui.open()
 

@@ -185,7 +185,7 @@
 
 	ui =  SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new (user, src.owner, ui_key, "synthesizer.tmpl", owner.name, 600, 800)
+		ui = new (user, src.owner, ui_key, "synthesizer.jst", owner.name, 600, 800)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

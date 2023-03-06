@@ -81,7 +81,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data)
 	if (!ui)
-		ui = new(user, src, ui_key, "docking_beacon.tmpl", "Docking Beacon Settings", 540, 400, state = state)
+		ui = new(user, src, ui_key, "docking_beacon.jst", "Docking Beacon Settings", 540, 400, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 

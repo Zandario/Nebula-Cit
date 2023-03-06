@@ -1,7 +1,7 @@
 /obj/machinery/material_processing/unloader
 	name = "ore unloader"
 	icon_state = "unloader"
-	use_ui_template = "material_processing_unloader.tmpl"
+	use_ui_template = "material_processing_unloader.jst"
 
 #define MAX_UNLOAD_TURF_CONTENTS 15
 #define MAX_UNLOAD_ORE_PER_TICK  10
@@ -13,7 +13,7 @@
 
 	if(!output_turf || !input_turf)
 		return
-	
+
 	if(length(output_turf.contents) >= MAX_UNLOAD_TURF_CONTENTS)
 		return
 

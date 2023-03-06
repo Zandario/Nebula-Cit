@@ -10,7 +10,7 @@
 	material = /decl/material/solid/plastic
 	matter = list(
 		/decl/material/solid/metal/copper    = MATTER_AMOUNT_REINFORCEMENT,
-		/decl/material/solid/silicon         = MATTER_AMOUNT_REINFORCEMENT, 
+		/decl/material/solid/silicon         = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/metal/steel     = MATTER_AMOUNT_REINFORCEMENT,
 		/decl/material/solid/metal/plutonium = MATTER_AMOUNT_TRACE,
 	)
@@ -145,7 +145,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "suit_sensor_jammer.tmpl", "Sensor Jammer", 300, 640)
+		ui = new(user, src, ui_key, "suit_sensor_jammer.jst", "Sensor Jammer", 300, 640)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
