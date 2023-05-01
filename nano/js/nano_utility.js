@@ -1,10 +1,16 @@
-// NanoUtility is the place to store utility functions
+/**
+ * NanoUtility is the place to store utility functions.
+ */
 var NanoUtility = (function () {
-  var _urlParameters = {}; // This is populated with the base url parameters (used by all links), which is probaby just the "src" parameter
+  /**
+   * This is populated with the base url parameters (used by all links), which is probaby just the "src" parameter.
+   */
+  var _urlParameters = {};
 
   return {
     init: function () {
-      var body = $("body"); // We store data in the body tag, it's as good a place as any
+      // We store data in the body tag, it's as good a place as any.
+      var body = $("body");
 
       _urlParameters = body.data("urlParameters");
     },
@@ -49,7 +55,7 @@ if (typeof doT == "undefined") {
   };
 })();
 
-// All scripts are initialised here, this allows control of init order
+// All scripts are initialised here, this allows control of init order.
 $(document).ready(function () {
   NanoUtility.init();
   NanoStateManager.init();
@@ -152,7 +158,7 @@ if (!String.prototype.trim) {
   };
 }
 
-// Replicate the ckey proc from BYOND
+// Replicate the ckey proc from BYOND.
 if (!String.prototype.ckey) {
   String.prototype.ckey = function () {
     return this.replace(/\W/g, "").toLowerCase();

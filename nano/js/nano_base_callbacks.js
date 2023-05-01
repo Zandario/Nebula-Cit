@@ -1,13 +1,22 @@
-// NanoBaseCallbacks is where the base callbacks (common to all templates) are stored
+/**
+ * NanoBaseCallbacks is where the base callbacks (common to all templates) are stored.
+ */
 NanoBaseCallbacks = (function () {
-  // _canClick is used to disable clicks for a short period after each click (to avoid mis-clicks)
+  /**
+   * _canClick is used to disable clicks for a short period after each click (to avoid mis-clicks).
+   */
   var _canClick = true;
 
   var _baseBeforeUpdateCallbacks = {};
 
   var _baseAfterUpdateCallbacks = {
-    // this callback is triggered after new data is processed
-    // it updates the status/visibility icon and adds click event handling to buttons/links
+    /**
+     * Updates the status/visibility icon and adds click event handling to buttons/links.
+     * This callback is triggered after new data is processed.
+     *
+     * @param {*} updateData
+     * @returns
+     */
     status: function (updateData) {
       var uiStatusClass;
       if (updateData["config"]["status"] == 2) {

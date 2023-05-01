@@ -1,5 +1,6 @@
-// This is the base state class, it is not to be used directly
-
+/**
+ * This is the base state class, it is not to be used directly.
+ */
 function NanoStateClass() {
   /*
   if (typeof this.key != "string" || !this.key.length) {

@@ -1,25 +1,42 @@
-// NanoStateManager handles data from the server and uses it to render templates
+/**
+ * NanoStateManager handles data from the server and uses it to render templates
+ */
 NanoStateManager = (function () {
-  // _isInitialised is set to true when all of this ui's templates have been processed/rendered
+  /**
+   * _isInitialised is set to true when all of this ui's templates have been processed/rendered
+   */
   var _isInitialised = false;
 
-  // the data for this ui
+  /**
+   * The data for this ui
+   */
   var _data = null;
 
-  // this is an array of callbacks which are called when new data arrives, before it is processed
+  /**
+   * This is an array of callbacks which are called when new data arrives, before it is processed.
+   */
   var _beforeUpdateCallbacks = {};
-  // this is an array of callbacks which are called when new data arrives, before it is processed
+
+  /**
+   * This is an array of callbacks which are called when new data arrives, before it is processed.
+   */
   var _afterUpdateCallbacks = {};
 
-  // this is an array of state objects, these can be used to provide custom javascript logic
+  /**
+   * This is an array of state objects, these can be used to provide custom javascript logic.
+   */
   var _states = {};
 
   var _currentState = null;
 
-  // the init function is called when the ui has loaded
-  // this function sets up the templates and base functionality
+  /**
+   * Sets up the templates and base functionality for the ui.
+   * Is called when the ui has loaded.
+   */
   var init = function () {
-    // We store initialData and templateData in the body tag, it's as good a place as any
+    /**
+     * We store initialData and templateData in the body tag, it's as good a place as any.
+     */
     _data = $("body").data("initialData");
 
     if (
@@ -47,13 +64,18 @@ NanoStateManager = (function () {
     });
   };
 
-  // Receive update data from the server
+  /**
+   * Receive update data from the server.
+   *
+   * @param {*} jsonString
+   * @returns
+   */
   var receiveUpdateData = function (jsonString) {
     var updateData;
 
-    //alert("recieveUpdateData called." + "<br>Type: " + typeof jsonString); //debug hook
+    // alert("recieveUpdateData called." + "<br>Type: " + typeof jsonString); //debug hook
     try {
-      // parse the JSON string from the server into a JSON object
+      // Parse the JSON string from the server into a JSON object.
       updateData = jQuery.parseJSON(jsonString);
     } catch (error) {
       alert(
@@ -66,7 +88,7 @@ NanoStateManager = (function () {
       return;
     }
 
-    //alert("recieveUpdateData passed trycatch block."); //debug hook
+    // alert("recieveUpdateData passed trycatch block."); //debug hook
 
     if (!updateData.hasOwnProperty("data")) {
       if (_data && _data.hasOwnProperty("data")) {
@@ -77,14 +99,21 @@ NanoStateManager = (function () {
     }
 
     if (_isInitialised) {
-      // all templates have been registered, so render them
+      // All templates have been registered, so render them.
       doUpdate(updateData);
     } else {
-      _data = updateData; // all templates have not been registered. We set _data directly here which will be applied after the template is loaded with the initial data
+      // All templates have not been registered.
+      // We set _data directly here which will be applied after the template is loaded with the initial data.
+      _data = updateData;
     }
   };
 
-  // This function does the update by calling the methods on the current state
+  /**
+   * This function does the update by calling the methods on the current state.
+   *
+   * @param {*} data
+   * @returns
+   */
   var doUpdate = function (data) {
     if (_currentState == null) {
       return;
@@ -92,9 +121,10 @@ NanoStateManager = (function () {
 
     data = _currentState.onBeforeUpdate(data);
 
+    // A beforeUpdateCallback returned a false value, this prevents the render from occuring.
     if (data === false) {
       alert("data is false, return");
-      return; // A beforeUpdateCallback returned a false value, this prevents the render from occuring
+      return;
     }
 
     _data = data;
@@ -104,7 +134,7 @@ NanoStateManager = (function () {
     _currentState.onAfterUpdate(_data);
   };
 
-  // Execute all callbacks in the callbacks array/object provided, updateData is passed to them for processing and potential modification
+  // Execute all callbacks in the callbacks array/object provided, updateData is passed to them for processing and potential modification.
   var executeCallbacks = function (callbacks, data) {
     for (var key in callbacks) {
       if (callbacks.hasOwnProperty(key) && jQuery.isFunction(callbacks[key])) {

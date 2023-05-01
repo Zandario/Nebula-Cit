@@ -1,4 +1,6 @@
-// NanoBaseHelpers is where the base template helpers (common to all templates) are stored
+/**
+ * NanoBaseHelpers is where the base template helpers (common to all templates) are stored.
+ */
 NanoBaseHelpers = (function () {
   var _baseHelpers = {
     // change ui styling to "syndicate mode"
