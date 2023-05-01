@@ -5,4 +5,4 @@ to easily add conditionals (if statements), loops (for loops) and custom formatt
 
 Templates are stored in the /nano/templates folder and the file extension is .njk.
 
-This guide is being replaced with a wiki entry, found here: <https://bay.ss13.me/en/Guides/coderbus/nanoui>
+This guide is being replaced with a wiki entry, found here: <https://baystation.xyz/index.php?title=Guide_to_NanoUI>
