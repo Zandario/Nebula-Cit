@@ -286,7 +286,7 @@ SUBSYSTEM_DEF(jobs)
 				if(age < job.minimum_character_age) // Nope.
 					continue
 				switch(age - job.ideal_character_age)
-					if(0 to -10)
+					if(-10 to 0)
 						if(age < (job.minimum_character_age+10))
 							weightedCandidates[V] = 3 // Still a bit young.
 						else
