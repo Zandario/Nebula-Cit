@@ -47,7 +47,7 @@
 /datum/nano_module/program/merchant
 	name = "Merchant's List"
 
-/datum/nano_module/program/merchant/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/merchant/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/list/data = host.initial_data()
 	var/show_trade = 0
 	var/hailed = 0
@@ -80,7 +80,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "merchant.tmpl", "Merchant List", 575, 700, state = state)
+		ui = new(user, src, ui_key, "merchant", "Merchant List", 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

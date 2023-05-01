@@ -19,34 +19,34 @@ NanoBaseCallbacks = (function () {
      */
     status: function (updateData) {
       var uiStatusClass;
-      if (updateData["config"]["status"] == 2) {
-        uiStatusClass = "icon24 uiStatusGood";
-        $(".linkActive").removeClass("inactive");
-      } else if (updateData["config"]["status"] == 1) {
-        uiStatusClass = "icon24 uiStatusAverage";
-        $(".linkActive").addClass("inactive");
+      if (updateData['config']['status'] == 2) {
+        uiStatusClass = 'icon24 uiStatusGood';
+        $('.linkActive').removeClass('inactive');
+      } else if (updateData['config']['status'] == 1) {
+        uiStatusClass = 'icon24 uiStatusAverage';
+        $('.linkActive').addClass('inactive');
       } else {
-        uiStatusClass = "icon24 uiStatusBad";
-        $(".linkActive").addClass("inactive");
+        uiStatusClass = 'icon24 uiStatusBad';
+        $('.linkActive').addClass('inactive');
       }
-      $("#uiStatusIcon").attr("class", uiStatusClass);
+      $('#uiStatusIcon').attr('class', uiStatusClass);
 
-      $(".linkActive").stopTime("linkPending");
-      $(".linkActive").removeClass("linkPending");
+      $('.linkActive').stopTime('linkPending');
+      $('.linkActive').removeClass('linkPending');
 
-      $(".linkActive")
-        .off("click")
-        .on("click", function (event) {
+      $('.linkActive')
+        .off('click')
+        .on('click', function (event) {
           event.preventDefault();
-          var href = $(this).data("href");
+          var href = $(this).data('href');
           if (href != null && _canClick) {
             _canClick = false;
-            $("body").oneTime(300, "enableClick", function () {
+            $('body').oneTime(300, 'enableClick', function () {
               _canClick = true;
             });
-            if (updateData["config"]["status"] == 2) {
-              $(this).oneTime(300, "linkPending", function () {
-                $(this).addClass("linkPending");
+            if (updateData['config']['status'] == 2) {
+              $(this).oneTime(300, 'linkPending', function () {
+                $(this).addClass('linkPending');
               });
             }
             window.location.href = href;
@@ -56,43 +56,43 @@ NanoBaseCallbacks = (function () {
       return updateData;
     },
     nanomap: function (updateData) {
-      $(".mapIcon")
-        .off("mouseenter mouseleave")
-        .on("mouseenter", function (event) {
+      $('.mapIcon')
+        .off('mouseenter mouseleave')
+        .on('mouseenter', function (event) {
           var self = this;
-          $("#uiMapTooltip")
-            .html($(this).children(".tooltip").html())
+          $('#uiMapTooltip')
+            .html($(this).children('.tooltip').html())
             .show()
             .stopTime()
-            .oneTime(5000, "hideTooltip", function () {
+            .oneTime(5000, 'hideTooltip', function () {
               $(this).fadeOut(500);
             });
         });
 
-      $(".zoomLink")
-        .off("click")
-        .on("click", function (event) {
+      $('.zoomLink')
+        .off('click')
+        .on('click', function (event) {
           event.preventDefault();
-          var zoomLevel = $(this).data("zoomLevel");
-          var uiMapObject = $("#uiMap");
+          var zoomLevel = $(this).data('zoomLevel');
+          var uiMapObject = $('#uiMap');
           var uiMapWidth = uiMapObject.width() * zoomLevel;
           var uiMapHeight = uiMapObject.height() * zoomLevel;
 
           uiMapObject.css({
             zoom: zoomLevel,
-            left: "50%",
-            top: "50%",
-            marginLeft: "-" + Math.floor(uiMapWidth / 2) + "px",
-            marginTop: "-" + Math.floor(uiMapHeight / 2) + "px",
+            left: '50%',
+            top: '50%',
+            marginLeft: '-' + Math.floor(uiMapWidth / 2) + 'px',
+            marginTop: '-' + Math.floor(uiMapHeight / 2) + 'px',
           });
         });
 
-      $("#uiMapImage").attr(
-        "src",
-        updateData["config"]["mapName"] +
-          "-" +
-          updateData["config"]["mapZLevel"] +
-          ".png"
+      $('#uiMapImage').attr(
+        'src',
+        updateData['config']['mapName'] +
+          '-' +
+          updateData['config']['mapZLevel'] +
+          '.png'
       );
 
       return updateData;

@@ -102,7 +102,7 @@
 			C.ftl_computer = src
 			break
 
-/obj/machinery/computer/ship/ftl/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/ship/ftl/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(!linked)
 		display_reconnect_dialog(user, "superluminal shunt management system")
 		return
@@ -138,7 +138,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "ftl_computer.tmpl", "[linked.name] Superluminal Shunt Control", 420, 530, src)
+		ui = new(user, src, ui_key, "ftl_computer", "[linked.name] Superluminal Shunt Control", 420, 530, src)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -269,5 +269,3 @@
 			jump_plot_timer = null
 			plotting_jump = FALSE
 			ping("Jump plotting cancelled!")
-
-

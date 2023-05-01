@@ -73,7 +73,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/artifact_harvester/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/artifact_harvester/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 
 	if(!owned_scanner)
@@ -91,7 +91,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "anomaly_harvester.tmpl", "Exotic Particle Harvester", 430, 315)
+		ui = new(user, src, ui_key, "anomaly_harvester", "Exotic Particle Harvester", 430, 315)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

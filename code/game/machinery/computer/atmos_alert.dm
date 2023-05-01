@@ -23,7 +23,7 @@ var/global/list/minor_air_alarms = list()
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/computer/atmos_alert/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/atmos_alert/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 	var/major_alarms[0]
 	var/minor_alarms[0]
@@ -39,7 +39,7 @@ var/global/list/minor_air_alarms = list()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_alert.tmpl", src.name, 500, 500)
+		ui = new(user, src, ui_key, "atmos_alert", src.name, 500, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

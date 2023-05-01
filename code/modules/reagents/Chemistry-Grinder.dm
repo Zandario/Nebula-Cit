@@ -122,7 +122,7 @@
 /obj/machinery/reagentgrinder/DefaultTopicState()
 	return global.physical_topic_state
 
-/obj/machinery/reagentgrinder/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/reagentgrinder/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/list/data = list()
 	data["inuse"] = inuse
 	data["beaker"] = !!beaker
@@ -139,7 +139,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "rgrinder.tmpl", name, 350, 400)
+		ui = new(user, src, ui_key, "rgrinder", name, 350, 400)
 		ui.set_initial_data(data)
 		ui.open()
 

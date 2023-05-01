@@ -249,7 +249,7 @@
 		running = SHIELD_SPINNING_UP
 		spinup_counter = round(spinup_delay / idle_multiplier)
 
-/obj/machinery/shield_generator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/shield_generator/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 
 	data["running"] = running
@@ -277,7 +277,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 500, 800)
+		ui = new(user, src, ui_key, "shieldgen", src.name, 500, 800)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

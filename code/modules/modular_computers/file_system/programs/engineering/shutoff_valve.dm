@@ -16,7 +16,7 @@
 /datum/nano_module/program/shutoff_monitor
 	name = "Shutoff valve monitor"
 
-/datum/nano_module/program/shutoff_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/shutoff_monitor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/list/list/data = host.initial_data()
 	var/list/z_valves = list()
 	var/list/zs = SSmapping.get_connected_levels(get_z(nano_host()))
@@ -31,7 +31,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "shutoff_monitor.tmpl", "Shutoff Valve Monitoring", 800, 500, state = state)
+		ui = new(user, src, ui_key, "shutoff_monitor", "Shutoff Valve Monitoring", 800, 500, state = state)
 		if(host.update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)
@@ -52,5 +52,3 @@
 		S.close_on_leaks = !S.close_on_leaks
 
 	return
-
-

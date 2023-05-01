@@ -88,7 +88,7 @@
 	ui_interact(user)
 	return
 
-/obj/structure/janitorialcart/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/structure/janitorialcart/ui_interact(var/mob/user, var/ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 	data["name"] = capitalize(name)
 	data["bag"] = mybag ? capitalize(mybag.name) : null
@@ -99,7 +99,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "janitorcart.tmpl", "Janitorial cart", 240, 160)
+		ui = new(user, src, ui_key, "janitorcart", "Janitorial cart", 240, 160)
 		ui.set_initial_data(data)
 		ui.open()
 

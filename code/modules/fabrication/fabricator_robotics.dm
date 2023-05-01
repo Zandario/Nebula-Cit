@@ -34,4 +34,4 @@
 	LAZYSET(., "species", picked_prosthetic_species)
 
 /obj/machinery/fabricator/robotics/get_nano_template()
-	return "fabricator_robot.tmpl"
+	return "fabricator_robot"

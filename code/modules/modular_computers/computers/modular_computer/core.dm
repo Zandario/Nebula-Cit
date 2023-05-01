@@ -20,7 +20,7 @@
 		ambience_last_played = world.time
 		playsound(src.loc, pick(beepsounds),15,1,10, is_ambiance = 1)
 
-/obj/item/modular_computer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/modular_computer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/datum/extension/interactive/os/os = get_extension(src, /datum/extension/interactive/os)
 	if(os)
 		os.ui_interact(user)

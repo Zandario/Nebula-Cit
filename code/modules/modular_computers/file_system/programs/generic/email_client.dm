@@ -109,7 +109,7 @@
 	if(messages_read)
 		read_message_count = allmails.len
 
-/datum/nano_module/program/email_client/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/email_client/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/list/data = host.initial_data()
 	var/datum/computer_network/network = get_network()
 	var/datum/computer_file/data/account/current_account = program.computer.get_account()
@@ -197,7 +197,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "email_client.tmpl", "Email Client", 600, 450, state = state)
+		ui = new(user, src, ui_key, "email_client", "Email Client", 600, 450, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = 1
 		ui.set_auto_update(1)

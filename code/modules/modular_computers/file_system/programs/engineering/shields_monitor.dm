@@ -38,7 +38,7 @@
 		deselect_shield()
 	return shields
 
-/datum/nano_module/program/shields_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/shields_monitor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/list/data = host.initial_data()
 	if(!can_connect_to_shield(active))
 		deselect_shield()
@@ -84,7 +84,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "shields_monitor.tmpl", "Shield Generators Monitoring", 400, 500, state = state)
+		ui = new(user, src, ui_key, "shields_monitor", "Shield Generators Monitoring", 400, 500, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)

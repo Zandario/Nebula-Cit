@@ -17,7 +17,7 @@
 /obj/item/aicard/attack_self(mob/user)
 	ui_interact(user)
 
-/obj/item/aicard/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.inventory_topic_state)
+/obj/item/aicard/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.inventory_topic_state)
 	var/data[0]
 	data["has_ai"] = carded_ai != null
 	if(carded_ai)
@@ -37,7 +37,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "aicard.tmpl", "[name]", 600, 400, state = state)
+		ui = new(user, src, ui_key, "aicard", "[name]", 600, 400, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

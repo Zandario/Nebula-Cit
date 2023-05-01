@@ -332,7 +332,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/port_gen/pacman/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(IsBroken())
 		return
 
@@ -372,7 +372,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "pacman.tmpl", src.name, 500, 560)
+		ui = new(user, src, ui_key, "pacman", src.name, 500, 560)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

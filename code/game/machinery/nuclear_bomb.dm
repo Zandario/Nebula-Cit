@@ -163,7 +163,7 @@ var/global/bomb_set
 		ui_interact(user)
 		return TRUE
 
-/obj/machinery/nuclearbomb/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/nuclearbomb/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 	data["hacking"] = 0
 	data["auth"] = is_auth(user)
@@ -192,7 +192,7 @@ var/global/bomb_set
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "nuclear_bomb.tmpl", "Nuke Control Panel", 300, 510)
+		ui = new(user, src, ui_key, "nuclear_bomb", "Nuke Control Panel", 300, 510)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

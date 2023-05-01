@@ -46,7 +46,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/computer/account_database/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/account_database/ui_interact(mob/user, ui_key="main", datum/nanoui/ui, force_open = TRUE)
 	user.set_machine(src)
 
 	var/data[0]
@@ -94,7 +94,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "accounts_terminal.tmpl", src.name, 400, 640)
+		ui = new(user, src, ui_key, "accounts_terminal", src.name, 400, 640)
 		ui.set_initial_data(data)
 		ui.open()
 

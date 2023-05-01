@@ -33,7 +33,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		var/atom/A = holder
-		ui = new(user, src, ui_key, "camera_settings.tmpl", capitalize(A.name), 500, 500)
+		ui = new(user, src, ui_key, "camera_settings", capitalize(A.name), 500, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -100,7 +100,7 @@
 		added_channels = list(added_channels)
 	added_channels -= channels
 	channels += added_channels
-	var/datum/computer_network/net = get_network()	
+	var/datum/computer_network/net = get_network()
 	if(net)
 		net.add_camera_to_channels(src, added_channels)
 	camera_repository.add_camera_to_channels(src, added_channels)
@@ -110,7 +110,7 @@
 		removed_channels = list(removed_channels)
 	removed_channels &= channels
 	channels -= removed_channels
-	var/datum/computer_network/net = get_network()	
+	var/datum/computer_network/net = get_network()
 	if(net)
 		net.remove_camera_from_channels(src, removed_channels)
 	camera_repository.remove_camera_from_channels(src, removed_channels)

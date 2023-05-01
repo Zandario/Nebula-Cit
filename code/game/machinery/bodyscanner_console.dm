@@ -56,7 +56,7 @@
 		return STATUS_CLOSE
 	return ..()
 
-/obj/machinery/body_scanconsole/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/body_scanconsole/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(connected && connected.occupant)
 		data["scanEnabled"] = TRUE
 		if(ishuman(connected.occupant))
@@ -77,7 +77,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "body_scanner.tmpl", "Body Scanner", 600, 800)
+		ui = new(user, src, ui_key, "body_scanner", "Body Scanner", 600, 800)
 		ui.set_initial_data(data)
 		ui.open()
 

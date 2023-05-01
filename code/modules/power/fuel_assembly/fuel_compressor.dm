@@ -16,7 +16,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/fuel_compressor/ui_interact(var/mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/fuel_compressor/ui_interact(var/mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/list/data = list()
 	for(var/mat_type in stored_material)
 		var/decl/material/mat = GET_DECL(mat_type)
@@ -28,7 +28,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "fuel_compressor.tmpl", name, 500, 600)
+		ui = new(user, src, ui_key, "fuel_compressor", name, 500, 600)
 		ui.set_initial_data(data)
 		ui.open()
 

@@ -178,7 +178,7 @@
 	ui_interact(usr)
 
 //GUI Tank Setup
-/obj/machinery/oxygen_pump/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/oxygen_pump/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 	if(!tank)
 		to_chat(usr, SPAN_WARNING("It is missing a tank!"))
@@ -208,7 +208,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "Oxygen_pump.tmpl", "Tank", 500, 300)
+		ui = new(user, src, ui_key, "Oxygen_pump", "Tank", 500, 300)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

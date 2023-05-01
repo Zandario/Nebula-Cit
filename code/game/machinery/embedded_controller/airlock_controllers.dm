@@ -59,7 +59,7 @@
 	name = "Advanced Airlock Controller"
 	base_type = /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller
 
-/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/nanoui/master_ui = null, var/datum/topic_state/state = global.default_topic_state)
+/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, var/datum/nanoui/master_ui = null, datum/topic_state/state = global.default_topic_state)
 	var/data[0]
 
 	data = list(
@@ -73,7 +73,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "advanced_airlock_console.tmpl", name, 470, 360, state = state)
+		ui = new(user, src, ui_key, "advanced_airlock_console", name, 470, 360, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -84,7 +84,7 @@
 	tag_secure = 1
 	base_type = /obj/machinery/embedded_controller/radio/airlock/airlock_controller
 
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/nanoui/master_ui = null, var/datum/topic_state/state = global.default_topic_state)
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, var/datum/nanoui/master_ui = null, datum/topic_state/state = global.default_topic_state)
 	var/data[0]
 
 	data = list(
@@ -96,7 +96,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "simple_airlock_console.tmpl", name, 470, 360, state = state)
+		ui = new(user, src, ui_key, "simple_airlock_console", name, 470, 360, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -107,7 +107,7 @@
 	tag_secure = 1
 	base_type = /obj/machinery/embedded_controller/radio/airlock/access_controller
 
-/obj/machinery/embedded_controller/radio/airlock/access_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/nanoui/master_ui = null, var/datum/topic_state/state = global.default_topic_state)
+/obj/machinery/embedded_controller/radio/airlock/access_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, var/datum/nanoui/master_ui = null, datum/topic_state/state = global.default_topic_state)
 	var/data[0]
 
 	data = list(
@@ -118,7 +118,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "door_access_console.tmpl", name, 330, 220, state = state)
+		ui = new(user, src, ui_key, "door_access_console", name, 330, 220, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

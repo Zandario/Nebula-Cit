@@ -4,18 +4,18 @@
   var doT = {
       version: "1.0.1-nanoui",
       templateSettings: {
-        evaluate: /\{\{([\s\S]+?)\}\}/g,
-        interpolate: /\{\{:([\s\S]+?)\}\}/g,
-        encode: /\{\{>([\s\S]+?)\}\}/g,
-        use: /\{\{#([\s\S]+?)\}\}/g,
-        define: /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,
-        conditional: /\{\{\/?if\s*([\s\S]*?)\s*\}\}/g,
-        conditionalElse: /\{\{else\s*([\s\S]*?)\s*\}\}/g,
+        evaluate: /\{\%\s*([\s\S]+?)\s*\%\}/g,
+        interpolate: /\{\%\s*:([\s\S]+?)\s*\%\}/g,
+        encode: /\{\%\s*>([\s\S]+?)\s*\%\}/g,
+        use: /\{\%\s*#([\s\S]+?)\s*\%\}/g,
+        define: /\{\%\s*##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\s*\%\}/g,
+        conditional: /\{\%\s*\/?if\s*([\s\S]*?)\s*\%\}/g,
+        conditionalElse: /\{\%\s*else\s*([\s\S]*?)\s*\%\}/g,
         iterate:
-          /\{\{\/?for\s*(?:\}\}|([\s\S]+?)\s*(?:\:\s*([\w$]+))?\s*(?:\:\s*([\w$]+))?\s*\}\})/g,
+          /\{\%\s*\/?for\s*(?:\%\}|([\s\S]+?)\s*(?:\:\s*([\w$]+))?\s*(?:\:\s*([\w$]+))?\s*\%\})/g,
         props:
-          /\{\{\/?props\s*(?:\}\}|([\s\S]+?)\s*(?:\:\s*([\w$]+))?\s*(?:\:\s*([\w$]+))?\s*\}\})/g,
-        empty: /\{\{empty\}\}/g,
+          /\{\%\s*\/?props\s*(?:\%\}|([\s\S]+?)\s*(?:\:\s*([\w$]+))?\s*(?:\:\s*([\w$]+))?\s*\%\})/g,
+        empty: /\{\%\s*empty\s*\%\}/g,
         varname: "data, config, helper",
         strip: true,
         append: true,

@@ -76,7 +76,7 @@
 /obj/item/transfer_valve/attack_self(mob/user)
 	ui_interact(user)
 
-/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 
 	// this is the data which will be sent to the ui
 	var/data[0]
@@ -90,7 +90,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "transfer_valve.tmpl", "Tank Transfer Valve", 460, 280)
+		ui = new(user, src, ui_key, "transfer_valve", "Tank Transfer Valve", 460, 280)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

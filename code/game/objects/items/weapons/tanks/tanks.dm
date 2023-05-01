@@ -228,7 +228,7 @@ var/global/list/global/tank_gauge_cache = list()
 	if (proxyassembly.assembly)
 		proxyassembly.assembly.attack_self(user)
 
-/obj/item/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/tank/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/mob/living/carbon/location = get_recursive_loc_of_type(/mob/living/carbon)
 
 	var/using_internal
@@ -272,7 +272,7 @@ var/global/list/global/tank_gauge_cache = list()
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "tanks.tmpl", "Tank", 500, 300)
+		ui = new(user, src, ui_key, "tanks", "Tank", 500, 300)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

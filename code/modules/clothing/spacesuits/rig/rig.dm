@@ -46,8 +46,8 @@
 	var/equipment_overlay_icon = 'icons/mob/onmob/onmob_rig_modules.dmi'
 	var/hides_uniform = 1 	//used to determinate if uniform should be visible whenever the suit is sealed or not
 
-	var/interface_path = "hardsuit.tmpl"
-	var/ai_interface_path = "hardsuit.tmpl"
+	var/interface_path = "hardsuit"
+	var/ai_interface_path = "hardsuit"
 	var/interface_title = "Hardsuit Controller"
 	var/wearer_move_delay //Used for AI moving.
 	var/ai_controlled_move_delay = 10
@@ -476,7 +476,7 @@
 	cell.use(cost * CELLRATE)
 	return 1
 
-/obj/item/rig/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/nano_state = global.inventory_topic_state)
+/obj/item/rig/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, var/nano_state = global.inventory_topic_state)
 	if(!user)
 		return
 

@@ -81,7 +81,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/computer/guestpass/ui_interact(var/mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open=1)
+/obj/machinery/computer/guestpass/ui_interact(var/mob/user, ui_key = "main", datum/nanoui/ui, var/force_open=1)
 	var/list/data = list()
 
 	data["mode"] = mode
@@ -105,7 +105,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "guestpass.tmpl", "Guest Pass Terminal", 600, 800)
+		ui = new(user, src, ui_key, "guestpass", "Guest Pass Terminal", 600, 800)
 		ui.set_initial_data(data)
 		ui.open()
 

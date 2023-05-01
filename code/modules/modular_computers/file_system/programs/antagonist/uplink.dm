@@ -17,7 +17,7 @@
 /datum/nano_module/program/uplink
 	name = "TaxQuickly 1.45b"
 
-/datum/nano_module/program/uplink/ui_interact(var/mob/user, var/ui_key = "main", datum/nanoui/ui = null, var/force_open = 1, var/master_ui = null, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/uplink/ui_interact(var/mob/user, var/ui_key = "main", datum/nanoui/ui = null, force_open = TRUE, var/master_ui = null, datum/topic_state/state = global.default_topic_state)
 	var/datum/computer_file/program/uplink/prog = program
 	var/obj/item/holder = program.computer.get_physical_host()
 	if(istype(holder) && holder.hidden_uplink && prog.password)

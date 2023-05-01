@@ -166,7 +166,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/sleeper/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.outside_topic_state)
+/obj/machinery/sleeper/ui_interact(var/mob/user, var/ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.outside_topic_state)
 	var/data[0]
 
 	data["power"] = stat & (NOPOWER|BROKEN) ? 0 : 1
@@ -209,7 +209,7 @@
 	data["skill_check"] = user.skill_check(SKILL_MEDICAL, SKILL_BASIC)
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "sleeper.tmpl", "Sleeper UI", 600, 600, state = state)
+		ui = new(user, src, ui_key, "sleeper", "Sleeper UI", 600, 600, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

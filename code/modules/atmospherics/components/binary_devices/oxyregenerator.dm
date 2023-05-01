@@ -112,7 +112,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/atmospherics/binary/oxyregenerator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/binary/oxyregenerator/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 	data["on"] = use_power ? 1 : 0
 	data["powerSetting"] = power_setting
@@ -131,7 +131,7 @@
 		// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "oxyregenerator.tmpl", "Oxygen Regeneration System", 440, 300)
+		ui = new(user, src, ui_key, "oxyregenerator", "Oxygen Regeneration System", 440, 300)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

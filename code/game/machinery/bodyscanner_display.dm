@@ -48,7 +48,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/body_scan_display/ui_interact(var/mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open=1)
+/obj/machinery/body_scan_display/ui_interact(var/mob/user, ui_key = "main", datum/nanoui/ui, var/force_open=1)
 	var/list/data = list()
 	data["scans"] = bodyscans
 	data["selected"] = selected
@@ -63,6 +63,6 @@
 		data["scan_body"] = "&nbsp;"
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "body_scan_display.tmpl", "Body Scan Display Console", 600, 800)
+		ui = new(user, src, ui_key, "body_scan_display", "Body Scan Display Console", 600, 800)
 		ui.set_initial_data(data)
 		ui.open()

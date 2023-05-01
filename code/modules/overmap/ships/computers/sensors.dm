@@ -45,7 +45,7 @@
 	else if(sound_token)
 		QDEL_NULL(sound_token)
 
-/obj/machinery/computer/ship/sensors/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/ship/sensors/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(!linked)
 		display_reconnect_dialog(user, "sensors")
 		return
@@ -101,7 +101,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "shipsensors.tmpl", "[linked.name] Sensors Control", 420, 530, nref = src)
+		ui = new(user, src, ui_key, "shipsensors", "[linked.name] Sensors Control", 420, 530, nref = src)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

@@ -26,7 +26,7 @@
 		min(global.musical_config.song_editor_lines_per_page * page_num, src.song.lines.len))
 
 
-/datum/nano_module/song_editor/ui_interact(mob/user, ui_key = "song_editor", var/datum/nanoui/ui = null, var/force_open = 0)
+/datum/nano_module/song_editor/ui_interact(mob/user, ui_key = "song_editor", datum/nanoui/ui, var/force_open = 0)
 	var/list/data = list()
 
 	var/current_page = src.current_page()
@@ -43,7 +43,7 @@
 
 	ui =  SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new (user, src, ui_key, "song_editor.tmpl", "Song Editor", 550, 600)
+		ui = new (user, src, ui_key, "song_editor", "Song Editor", 550, 600)
 		ui.set_initial_data(data)
 		ui.open()
 

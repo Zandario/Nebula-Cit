@@ -10,7 +10,7 @@
 	construct_state = /decl/machine_construction/default/panel_closed
 	atom_flags =  ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE
 
-	var/ui_template = "pointdefense_control.tmpl"
+	var/ui_template = "pointdefense_control"
 	var/initial_id_tag
 	var/list/targets = list()
 
@@ -31,7 +31,7 @@
 	..()
 	ADJUST_TAG_VAR(initial_id_tag, map_hash)
 
-/obj/machinery/pointdefense_control/ui_interact(var/mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/pointdefense_control/ui_interact(var/mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(ui_template)
 		var/list/data = build_ui_data()
 		ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)

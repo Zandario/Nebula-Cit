@@ -167,7 +167,7 @@ var/global/list/turret_icons
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/porta_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/porta_turret/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
@@ -187,7 +187,7 @@ var/global/list/turret_icons
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
+		ui = new(user, src, ui_key, "turret_control", "Turret Controls", 500, 300)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

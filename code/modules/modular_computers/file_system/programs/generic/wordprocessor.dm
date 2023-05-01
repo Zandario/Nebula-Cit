@@ -117,7 +117,7 @@
 			saving.stored_data = loaded_data
 			view_file_browser(usr, "saveas_file", /datum/computer_file/data/text, OS_WRITE_ACCESS, browser_desc, saving)
 			return TOPIC_HANDLED
-		
+
 		save_file(usr)
 		return TOPIC_REFRESH
 
@@ -154,7 +154,7 @@
 
 #undef MAX_FIELDS_NUM
 
-/datum/computer_file/program/wordprocessor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/computer_file/program/wordprocessor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	. = ..()
 	if(!.)
 		return
@@ -171,7 +171,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "word_processor.tmpl", "Word Processor", 575, 700, state = state)
+		ui = new(user, src, ui_key, "word_processor", "Word Processor", 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

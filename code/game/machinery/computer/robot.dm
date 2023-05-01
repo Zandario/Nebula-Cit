@@ -11,14 +11,14 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/computer/robotics/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/robotics/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 	data["robots"] = get_cyborgs(user)
 	data["is_ai"] = issilicon(user)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "robot_control.tmpl", "Robotic Control Console", 400, 500)
+		ui = new(user, src, ui_key, "robot_control", "Robotic Control Console", 400, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

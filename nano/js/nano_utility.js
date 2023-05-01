@@ -10,29 +10,29 @@ var NanoUtility = (function () {
   return {
     init: function () {
       // We store data in the body tag, it's as good a place as any.
-      var body = $("body");
+      var body = $('body');
 
-      _urlParameters = body.data("urlParameters");
+      _urlParameters = body.data('urlParameters');
     },
     // generate a Byond href, combines _urlParameters with parameters
     generateHref: function (parameters) {
-      var queryString = "?";
+      var queryString = '?';
 
       for (var key in _urlParameters) {
         if (_urlParameters.hasOwnProperty(key)) {
-          if (queryString !== "?") {
-            queryString += ";";
+          if (queryString !== '?') {
+            queryString += ';';
           }
-          queryString += key + "=" + _urlParameters[key];
+          queryString += key + '=' + _urlParameters[key];
         }
       }
 
       for (var key in parameters) {
         if (parameters.hasOwnProperty(key)) {
-          if (queryString !== "?") {
-            queryString += ";";
+          if (queryString !== '?') {
+            queryString += ';';
           }
-          queryString += key + "=" + parameters[key];
+          queryString += key + '=' + parameters[key];
         }
       }
       return queryString;
@@ -40,17 +40,17 @@ var NanoUtility = (function () {
   };
 })();
 
-if (typeof jQuery == "undefined") {
-  alert("ERROR: Javascript library failed to load!");
+if (typeof jQuery == 'undefined') {
+  alert('ERROR: Javascript library failed to load!');
 }
-if (typeof doT == "undefined") {
-  alert("ERROR: Template engine failed to load!");
+if (typeof doT == 'undefined') {
+  alert('ERROR: Template engine failed to load!');
 }
 
 (function () {
   var _alert = window.alert;
   window.alert = function (str) {
-    window.location = "byond://?nano_err=" + encodeURIComponent(str);
+    window.location = 'byond://?nano_err=' + encodeURIComponent(str);
     _alert(str);
   };
 })();
@@ -86,16 +86,16 @@ if (!String.prototype.format) {
       if (intVal >= 0) {
         replace = args[intVal];
       } else if (intVal === -1) {
-        replace = "{";
+        replace = '{';
       } else if (intVal === -2) {
-        replace = "}";
+        replace = '}';
       } else {
-        replace = "";
+        replace = '';
       }
       return replace;
     });
   };
-  String.prototype.format.regex = new RegExp("{-?[0-9]+}", "g");
+  String.prototype.format.regex = new RegExp('{-?[0-9]+}', 'g');
 }
 
 Object.size = function (obj) {
@@ -126,7 +126,7 @@ String.prototype.toTitleCase = function () {
         index > 0 &&
         index + p1.length !== title.length &&
         p1.search(smallWords) > -1 &&
-        title.charAt(index - 2) !== ":" &&
+        title.charAt(index - 2) !== ':' &&
         title.charAt(index - 1).search(/[^\s-]/) < 0
       ) {
         return match.toLowerCase();
@@ -154,13 +154,13 @@ Function.prototype.inheritsFrom = function (parentClassOrObject) {
 
 if (!String.prototype.trim) {
   String.prototype.trim = function () {
-    return this.replace(/^\s+|\s+$/g, "");
+    return this.replace(/^\s+|\s+$/g, '');
   };
 }
 
 // Replicate the ckey proc from BYOND.
 if (!String.prototype.ckey) {
   String.prototype.ckey = function () {
-    return this.replace(/\W/g, "").toLowerCase();
+    return this.replace(/\W/g, '').toLowerCase();
   };
 }

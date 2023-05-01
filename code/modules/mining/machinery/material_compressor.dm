@@ -3,7 +3,7 @@
 /obj/machinery/material_processing/compressor
 	name = "material compressor"
 	icon_state = "compressor"
-	use_ui_template = "material_processing_compressor.tmpl"
+	use_ui_template = "material_processing_compressor"
 	var/list/stored = list()
 
 /obj/machinery/material_processing/compressor/Process()

@@ -293,7 +293,7 @@ update_flag
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["name"] = name
@@ -311,7 +311,7 @@ update_flag
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "canister.tmpl", "Canister", 480, 400)
+		ui = new(user, src, ui_key, "canister", "Canister", 480, 400)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

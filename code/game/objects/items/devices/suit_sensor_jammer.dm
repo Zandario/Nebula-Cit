@@ -126,7 +126,7 @@
 		return STATUS_CLOSE
 	return ..()
 
-/obj/item/suit_sensor_jammer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/suit_sensor_jammer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/list/methods = new
 	for(var/suit_sensor_jammer_method/ssjm in suit_sensor_jammer_methods)
 		methods[++methods.len] = list("name" = ssjm.name, "cost" = ssjm.energy_cost, "ref" = "\ref[ssjm]")
@@ -145,7 +145,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "suit_sensor_jammer.tmpl", "Sensor Jammer", 300, 640)
+		ui = new(user, src, ui_key, "suit_sensor_jammer", "Sensor Jammer", 300, 640)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

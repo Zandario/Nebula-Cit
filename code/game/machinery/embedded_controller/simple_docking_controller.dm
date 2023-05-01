@@ -8,7 +8,7 @@
 	..()
 	ADJUST_TAG_VAR(tag_door, map_hash)
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/nanoui/master_ui = null, var/datum/topic_state/state = global.default_topic_state)
+/obj/machinery/embedded_controller/radio/simple_docking_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, var/datum/nanoui/master_ui = null, datum/topic_state/state = global.default_topic_state)
 	var/data[0]
 	var/datum/computer/file/embedded_program/docking/simple/docking_program = program
 
@@ -22,7 +22,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "simple_docking_console.tmpl", name, 470, 290, state = state)
+		ui = new(user, src, ui_key, "simple_docking_console", name, 470, 290, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

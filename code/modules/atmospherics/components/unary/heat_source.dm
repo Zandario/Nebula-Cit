@@ -58,7 +58,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/atmospherics/unary/heater/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/unary/heater/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["on"] = use_power ? 1 : 0
@@ -79,7 +79,7 @@
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "freezer.tmpl", "Gas Heating System", 440, 300)
+		ui = new(user, src, ui_key, "freezer", "Gas Heating System", 440, 300)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

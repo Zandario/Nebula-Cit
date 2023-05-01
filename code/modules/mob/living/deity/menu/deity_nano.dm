@@ -2,7 +2,7 @@
 	var/list/nano_data = list()
 	var/datum/phenomena/selected
 
-/mob/living/deity/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/uistate = global.self_topic_state)
+/mob/living/deity/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, var/uistate = global.self_topic_state)
 	if(!nano_data["categories"]) //If we don't have the categories set yet, we should populate our data.
 		var/list/categories = list()
 		for(var/cat in items_by_category)
@@ -23,7 +23,7 @@
 	nano_data["regen"] = power_per_regen
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, nano_data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "deity.tmpl", "Deity Menu", 650, 600, state = uistate)
+		ui = new(user, src, ui_key, "deity", "Deity Menu", 650, 600, state = uistate)
 		ui.set_initial_data(nano_data)
 		ui.open()
 		ui.set_auto_update(TRUE)

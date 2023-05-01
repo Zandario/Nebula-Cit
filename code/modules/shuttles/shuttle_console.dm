@@ -8,7 +8,7 @@
 	var/shuttle_tag  // Used to coordinate data in shuttle controller.
 	var/hacked = 0   // Has been emagged, no access restrictions.
 
-	var/ui_template = "shuttle_control_console.tmpl"
+	var/ui_template = "shuttle_control_console"
 
 /obj/machinery/computer/shuttle_control/modify_mapped_vars(map_hash)
 	..()
@@ -93,7 +93,7 @@
 			shuttle.set_docking_codes(uppertext(newcode))
 		return TOPIC_REFRESH
 
-/obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/datum/shuttle/autodock/shuttle = SSshuttle.shuttles[shuttle_tag]
 	if (!istype(shuttle))
 		to_chat(user,"<span class='warning'>Unable to establish link with the shuttle.</span>")

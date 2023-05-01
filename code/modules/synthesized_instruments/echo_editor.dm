@@ -9,7 +9,7 @@
 	src.player = player
 
 
-/datum/nano_module/echo_editor/ui_interact(mob/user, ui_key = "echo_editor", var/datum/nanoui/ui = null, var/force_open = 0)
+/datum/nano_module/echo_editor/ui_interact(mob/user, ui_key = "echo_editor", datum/nanoui/ui, var/force_open = 0)
 	var/list/list/data = list()
 	data["echo_params"] = list()
 	for (var/i=1 to 18)
@@ -22,7 +22,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new (user, src, ui_key, "echo_editor.tmpl", "Echo Editor", 300, 600)
+		ui = new (user, src, ui_key, "echo_editor", "Echo Editor", 300, 600)
 		ui.set_initial_data(data)
 		ui.open()
 

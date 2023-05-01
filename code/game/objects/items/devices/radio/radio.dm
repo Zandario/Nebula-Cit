@@ -88,7 +88,7 @@
 
 	return ui_interact(user)
 
-/obj/item/radio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/radio/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 
 	data["mic_status"] = broadcasting
@@ -112,7 +112,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
+		ui = new(user, src, ui_key, "radio_basic", "[name]", 400, 430)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -746,7 +746,7 @@
 
 	. = ..()
 
-/obj/item/radio/borg/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/radio/borg/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 
 	data["mic_status"] = broadcasting
@@ -769,7 +769,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
+		ui = new(user, src, ui_key, "radio_basic", "[name]", 400, 430)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -879,5 +879,5 @@
 		if(istype(exosuit) && exosuit.head && exosuit.head.radio && exosuit.head.radio.is_functional())
 			return ..()
 
-/obj/item/radio/exosuit/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.mech_topic_state)
+/obj/item/radio/exosuit/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.mech_topic_state)
 	. = ..()

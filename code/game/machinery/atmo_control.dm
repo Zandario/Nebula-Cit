@@ -46,12 +46,12 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/computer/air_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/air_control/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	data["systemname"] = name
 	get_console_data()
 	if(!ui)
-		ui = new(user, src, ui_key, "atmosconsole.tmpl", data["systemname"], 800, 800)
+		ui = new(user, src, ui_key, "atmosconsole", data["systemname"], 800, 800)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

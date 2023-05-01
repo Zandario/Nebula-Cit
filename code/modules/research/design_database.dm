@@ -31,7 +31,7 @@ var/global/list/default_initial_tech_levels
 	else
 		sync_policy |= sync_flag
 
-/obj/machinery/design_database/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/design_database/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 
 	var/list/data = list()
 	var/datum/extension/network_device/device = get_extension(src, /datum/extension/network_device)
@@ -59,7 +59,7 @@ var/global/list/default_initial_tech_levels
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "design_database.tmpl", "Design Database")
+		ui = new(user, src, ui_key, "design_database", "Design Database")
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

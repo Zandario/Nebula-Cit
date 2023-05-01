@@ -103,11 +103,11 @@
 				return TOPIC_NOACTION
 			return TOPIC_REFRESH
 
-/obj/machinery/computer/fission/ui_interact(var/mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/fission/ui_interact(var/mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/list/data = build_ui_data()
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "fission_core.tmpl", name, 400, 600)
+		ui = new(user, src, ui_key, "fission_core", name, 400, 600)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

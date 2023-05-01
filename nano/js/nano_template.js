@@ -1,6 +1,6 @@
 var NanoTemplate = (function () {
   var _templateData = {};
-  var _templateFileName = "";
+  var _templateFileName = '';
 
   var _templates = {};
   var _compiledTemplates = {};
@@ -9,12 +9,12 @@ var NanoTemplate = (function () {
 
   var init = function () {
     // We store templateData in the body tag, it's as good a place as any
-    _templateData = $("body").data("templateData");
+    _templateData = $('body').data('templateData');
     _templateFileName =
-      $("body").data("initialData")["config"]["templateFileName"];
+      $('body').data('initialData')['config']['templateFileName'];
 
     if (_templateData == null) {
-      alert("Error: Template data did not load correctly.");
+      alert('Error: Template data did not load correctly.');
     }
 
     loadAllTemplates();
@@ -25,7 +25,7 @@ var NanoTemplate = (function () {
       $.ajax({
         url: _templateFileName,
         cache: false,
-        dataType: "json",
+        dataType: 'json',
       })
     )
       .done(function (allTemplates) {
@@ -37,21 +37,21 @@ var NanoTemplate = (function () {
             NanoTemplate.addTemplate(key, templateMarkup);
           } catch (error) {
             alert(
-              "ERROR: Loading template " +
+              'ERROR: Loading template ' +
                 key +
-                "(" +
+                '(' +
                 _templateData[key] +
-                ") failed with error: " +
+                ') failed with error: ' +
                 error.message
             );
             return;
           }
           delete _templateData[key];
         }
-        $(document).trigger("templatesLoaded");
+        $(document).trigger('templatesLoaded');
       })
       .fail(function () {
-        alert("ERROR: Failed to locate or parse templates file.");
+        alert('ERROR: Failed to locate or parse templates file.');
       });
   };
 
@@ -97,26 +97,26 @@ var NanoTemplate = (function () {
               templateKey +
               '" does not exist in _compiledTemplates!'
           );
-          return "<h2>Template error (does not exist)</h2>";
+          return '<h2>Template error (does not exist)</h2>';
         }
         compileTemplates();
       }
-      if (typeof _compiledTemplates[templateKey] != "function") {
-        return "<h2>Template error (failed to compile)</h2>";
+      if (typeof _compiledTemplates[templateKey] != 'function') {
+        return '<h2>Template error (failed to compile)</h2>';
       }
       return _compiledTemplates[templateKey].call(
         this,
-        data["data"],
-        data["config"],
+        data['data'],
+        data['config'],
         _helpers
       );
     },
     addHelper: function (helperName, helperFunction) {
       if (!jQuery.isFunction(helperFunction)) {
         alert(
-          "NanoTemplate.addHelper failed to add " +
+          'NanoTemplate.addHelper failed to add ' +
             helperName +
-            " as it is not a function."
+            ' as it is not a function.'
         );
         return;
       }

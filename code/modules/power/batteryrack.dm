@@ -187,7 +187,7 @@
 		celldiff = min(min(celldiff, most.charge), least.maxcharge - least.charge)
 		least.give(most.use(celldiff))
 
-/obj/machinery/power/smes/batteryrack/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/smes/batteryrack/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 
 	data["mode"] = mode
@@ -217,7 +217,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "psu.tmpl", "Cell Rack PSU", 500, 430)
+		ui = new(user, src, ui_key, "psu", "Cell Rack PSU", 500, 430)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

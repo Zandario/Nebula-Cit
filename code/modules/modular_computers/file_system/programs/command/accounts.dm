@@ -20,7 +20,7 @@
 	var/datum/computer_file/data/account/selected_account
 	var/selected_parent_group
 
-/datum/nano_module/program/accounts/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/accounts/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/list/data = host.initial_data()
 	var/datum/computer_network/network = get_network()
 	if(!network)
@@ -74,7 +74,7 @@
 	data["prog_state"] = prog_state
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "account_management.tmpl", name, 600, 700, state = state)
+		ui = new(user, src, ui_key, "account_management", name, 600, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
@@ -154,7 +154,7 @@
 				module.selected_parent_group = null // Just in case.
 				return TOPIC_REFRESH
 			var/list/group_dict = net_acl.get_group_dict()
-			
+
 			if(href_list["create_account"])
 				var/list/account_creation_access
 
@@ -185,7 +185,7 @@
 
 				if(!net_acl.check_account_creation_auth(computer.get_account()))
 					account_recovery_access = NM.get_access(user)
-				
+
 				var/list/backups = network.get_account_backups(account_recovery_access)
 				if(!length(backups))
 					to_chat(user, SPAN_WARNING("No account backups found on account servers!"))
@@ -194,11 +194,11 @@
 				var/selected_login = input(user, "Select the account backup you would like to recover:", "Account Backups") as anything in backups
 				if(!CanInteract(user, state) || !selected_login)
 					return TOPIC_HANDLED
-				
+
 				if(network.find_account_by_login(selected_login))
 					to_chat(user, SPAN_WARNING("An account with that login already exists on the network! Cannot recover backup."))
 					return TOPIC_HANDLED
-				
+
 				var/datum/computer_file/data/account/backup = backups[selected_login]
 				backup.backup = FALSE
 				backup.filename = replacetext(backup.filename, backup.copy_string, null) // Remove the backup signifier on the file.
@@ -244,7 +244,7 @@
 							module.selected_account.parent_groups |= module.selected_parent_group
 							return TOPIC_REFRESH
 					module.selected_account.parent_groups -= module.selected_parent_group
-				
+
 			if(href_list["select_parent_group"])
 				if(module.selected_parent_group)
 					return TOPIC_REFRESH

@@ -94,7 +94,7 @@ var/global/req_console_information = list()
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/network/requests_console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/network/requests_console/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 
 	data["department"] = department
@@ -117,7 +117,7 @@ var/global/req_console_information = list()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "request_console.tmpl", name, 520, 410)
+		ui = new(user, src, ui_key, "request_console", name, 520, 410)
 		ui.set_initial_data(data)
 		ui.open()
 

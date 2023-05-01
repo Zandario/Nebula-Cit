@@ -227,7 +227,7 @@
 		to_chat(user, "<span class='warning'>You need to open the access hatch on \the [src] first!</span>")
 		return TRUE
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["nameTag"] = name_tag
@@ -252,7 +252,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "smes.tmpl", "SMES Unit", 540, 380)
+		ui = new(user, src, ui_key, "smes", "SMES Unit", 540, 380)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

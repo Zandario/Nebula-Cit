@@ -112,7 +112,7 @@
 	ui_interact(user)
 	return
 
-/obj/machinery/atmospherics/binary/passive_gate/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/binary/passive_gate/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	// this is the data which will be sent to the ui
 	var/data[0]
 
@@ -132,7 +132,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "pressure_regulator.tmpl", name, 470, 370)
+		ui = new(user, src, ui_key, "pressure_regulator", name, 470, 370)
 		ui.set_initial_data(data)	// when the ui is first opened this is the data it will use
 		ui.open()					// open the new ui window
 		ui.set_auto_update(1)		// auto update every Master Controller tick

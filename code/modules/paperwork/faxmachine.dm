@@ -187,9 +187,9 @@ var/global/list/adminfaxes     = list()	//cache for faxes that have been sent to
 	var/list/data = ui_data(user, ui_key)
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "fax_machine.tmpl", name, 640, 480)
-		ui.add_template("net_shared",                 "network_shared.tmpl") //Shared network UI stuff
-		ui.add_template("stock_parts_printer_shared", "stock_parts_printer.tmpl")
+		ui = new(user, src, ui_key, "fax_machine", name, 640, 480)
+		ui.add_template("net_shared",                 "network_shared") //Shared network UI stuff
+		ui.add_template("stock_parts_printer_shared", "stock_parts_printer")
 		ui.set_initial_data(data)
 		ui.open()
 

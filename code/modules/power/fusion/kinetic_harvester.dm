@@ -45,13 +45,13 @@
 	var/datum/extension/local_network_member/lanm = get_extension(src, /datum/extension/local_network_member)
 	var/datum/local_network/lan = lanm.get_local_network()
 
-	if(lan)	
+	if(lan)
 		var/list/fusion_cores = lan.get_devices(/obj/machinery/fusion_core)
 		if(fusion_cores && fusion_cores.len)
 			harvest_from = fusion_cores[1]
 	return harvest_from
 
-/obj/machinery/kinetic_harvester/ui_interact(var/mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/kinetic_harvester/ui_interact(var/mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 
 	if(!harvest_from && !find_core())
 		to_chat(user, SPAN_WARNING("This machine cannot locate a fusion core. Please ensure the machine is correctly configured to share a fusion plant network."))
@@ -71,7 +71,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "kinetic_harvester.tmpl", name, 400, 600)
+		ui = new(user, src, ui_key, "kinetic_harvester", name, 400, 600)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

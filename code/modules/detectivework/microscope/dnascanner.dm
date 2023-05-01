@@ -17,7 +17,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/forensic/dnascanner/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null)
+/obj/machinery/forensic/dnascanner/ui_interact(mob/user, ui_key = "main",datum/nanoui/ui)
 	var/list/data = list()
 	data["scan_progress"] = round(scanner_progress)
 	data["scanning"] = scanning
@@ -26,7 +26,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data)
 	if (!ui)
-		ui = new(user, src, ui_key, "dnaforensics.tmpl", "QuikScan DNA Analyzer", 540, 326)
+		ui = new(user, src, ui_key, "dnaforensics", "QuikScan DNA Analyzer", 540, 326)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

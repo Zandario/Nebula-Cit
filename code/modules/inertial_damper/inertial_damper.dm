@@ -186,7 +186,7 @@ var/global/list/ship_inertial_dampers = list()
 
 	return TOPIC_NOACTION
 
-/obj/machinery/inertial_damper/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/inertial_damper/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 	data["online"] = is_on()
 	data["damping_strength"] = round(get_damping_strength(TRUE), 0.01)
@@ -196,7 +196,7 @@ var/global/list/ship_inertial_dampers = list()
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "inertial_damper.tmpl", "Inertial Damper", 400, 400)
+		ui = new(user, src, ui_key, "inertial_damper", "Inertial Damper", 400, 400)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

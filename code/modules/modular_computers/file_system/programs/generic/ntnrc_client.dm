@@ -186,7 +186,7 @@
 /datum/nano_module/program/computer_chatclient
 	name = "Intranet Relay Chat Client"
 
-/datum/nano_module/program/computer_chatclient/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/computer_chatclient/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/datum/computer_network/network = program?.computer?.get_network()
 	if(!network || !network.chat_channels)
 		return
@@ -229,7 +229,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "chat_app.tmpl", name, 575, 700, state = state)
+		ui = new(user, src, ui_key, "chat_app", name, 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

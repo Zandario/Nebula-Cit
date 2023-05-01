@@ -622,7 +622,7 @@ a.inactive:hover {
   white-space: nowrap;
 }
 
-/* DNA Modifier UI (dna_modifier.tmpl) */
+/* DNA Modifier UI (dna_modifier.njk) */
 
 .dnaBlock {
   float: left;

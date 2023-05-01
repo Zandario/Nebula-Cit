@@ -107,7 +107,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/omni/filter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/atmospherics/omni/filter/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	usr.set_machine(src)
 
 	var/list/data = new()
@@ -117,7 +117,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "omni_filter.tmpl", "Omni Filter Control", 550, 550)
+		ui = new(user, src, ui_key, "omni_filter", "Omni Filter Control", 550, 550)
 		ui.set_initial_data(data)
 
 		ui.open()
@@ -211,7 +211,7 @@
 			return null
 
 /obj/machinery/atmospherics/omni/filter/proc/switch_filter(var/dir, var/mode, var/gas)
-	//check they aren't trying to disable the input or output ~this can only happen if they hack the cached tmpl file
+	//check they aren't trying to disable the input or output ~this can only happen if they hack the cached njk file
 	for(var/datum/omni_port/P in ports)
 		if(P.direction == dir)
 			if(P.mode == ATM_INPUT || P.mode == ATM_OUTPUT)

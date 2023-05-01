@@ -6,13 +6,13 @@
 
 //Can be overriden to use a different nano template file
 /obj/machinery/fabricator/proc/get_nano_template()
-	return "fabricator.tmpl"
+	return "fabricator"
 
-//Returns a list of templates with the format "name" = "file.tmpl" to be loaded in addition to the main template. Name is used to access in the tmpl files.
+//Returns a list of templates with the format "name" = "file" to be loaded in addition to the main template. Name is used to access in the njk files.
 /obj/machinery/fabricator/proc/get_extra_templates()
 	return list(
-		"net_shared" = "network_shared.tmpl",     //Shared network UI stuff
-		"fab_shared" = "fabricator_shared.tmpl",  //fab_shared should be included in all fabricator templates
+		"net_shared" = "network_shared",     //Shared network UI stuff
+		"fab_shared" = "fabricator_shared",  //fab_shared should be included in all fabricator templates
 		)
 
 /obj/machinery/fabricator/proc/ui_fabricator_resource_data()
@@ -186,7 +186,7 @@
 	return data
 
 //Shouldn't need to override this in subclasses.
-/obj/machinery/fabricator/ui_interact(mob/user, ui_key = "fab", datum/nanoui/ui=null, force_open=1, var/master_ui = null, var/datum/topic_state/state = global.default_topic_state)
+/obj/machinery/fabricator/ui_interact(mob/user, ui_key = "fab", datum/nanoui/ui=null, force_open=1, var/master_ui = null, datum/topic_state/state = global.default_topic_state)
 	var/list/data = ui_data(user, ui_key)
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

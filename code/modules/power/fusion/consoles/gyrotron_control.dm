@@ -3,7 +3,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "gyrotron_screen"
 	light_color = COLOR_BLUE
-	ui_template = "fusion_gyrotron_control.tmpl"
+	ui_template = "fusion_gyrotron_control"
 
 /obj/machinery/computer/fusion/gyrotron/OnTopic(var/mob/user, var/href_list, var/datum/topic_state/state)
 
@@ -60,4 +60,3 @@
 			gyrotron["energy"] = G.mega_energy
 			gyrotrons += list(gyrotron)
 	.["gyrotrons"] = gyrotrons
-

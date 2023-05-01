@@ -3,7 +3,7 @@
 	icon = 'icons/obj/machines/tcomms/relay.dmi'
 	icon_state = "relay"
 	network_device_type =  /datum/extension/network_device/broadcaster/relay
-	main_template = "network_router.tmpl"
+	main_template = "network_router"
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	stat_immune = 0

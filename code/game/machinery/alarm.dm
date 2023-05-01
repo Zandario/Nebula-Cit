@@ -464,7 +464,7 @@
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/alarm/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, var/master_ui = null, var/datum/topic_state/state = global.default_topic_state)
+/obj/machinery/alarm/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, var/master_ui = null, datum/topic_state/state = global.default_topic_state)
 	var/data[0]
 	var/remote_connection = istype(state, /datum/topic_state/remote)  // Remote connection means we're non-adjacent/connecting from another computer
 	var/remote_access = remote_connection && CanInteract(user, state) // Remote access means we also have the privilege to alter the air alarm.
@@ -483,7 +483,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "air_alarm.tmpl", src.name, 325, 625, master_ui = master_ui, state = state)
+		ui = new(user, src, ui_key, "air_alarm", src.name, 325, 625, master_ui = master_ui, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

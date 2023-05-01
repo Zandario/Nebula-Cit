@@ -49,7 +49,7 @@
 	else
 		return check_account
 
-/obj/item/card/id/network/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null)
+/obj/item/card/id/network/ui_interact(mob/user, ui_key = "main",datum/nanoui/ui)
 	var/data[0]
 	var/login  = associated_network_account["login"]
 	var/password = associated_network_account["password"]
@@ -58,7 +58,7 @@
 	data["password"] = password ? stars(password, 0) : "Enter Password"
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data)
 	if (!ui)
-		ui = new(user, src, ui_key, "network_id.tmpl", "Network ID Settings", 540, 326)
+		ui = new(user, src, ui_key, "network_id", "Network ID Settings", 540, 326)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -86,7 +86,7 @@
 
 		current_account = null
 		return TOPIC_REFRESH
-	
+
 	if(href_list["login_account"])
 		if(login_account())
 			to_chat(usr, SPAN_NOTICE("Account successfully logged in."))

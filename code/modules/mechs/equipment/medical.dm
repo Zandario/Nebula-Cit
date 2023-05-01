@@ -64,7 +64,7 @@
 	add_reagent_canister(null, new /obj/item/chems/chem_disp_cartridge/antitoxins())
 	add_reagent_canister(null, new /obj/item/chems/chem_disp_cartridge/oxy_meds())
 
-/obj/machinery/sleeper/mounted/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.mech_topic_state)
+/obj/machinery/sleeper/mounted/ui_interact(var/mob/user, var/ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.mech_topic_state)
 	. = ..()
 
 /obj/machinery/sleeper/mounted/nano_host()
@@ -84,4 +84,3 @@
 			user.visible_message("<span class='notice'>\The [user] removes \the [beaker] from \the [src].</span>", "<span class='notice'>You remove \the [beaker] from \the [src].</span>")
 		beaker = I
 		user.visible_message("<span class='notice'>\The [user] adds \a [I] to \the [src].</span>", "<span class='notice'>You add \a [I] to \the [src].</span>")
-

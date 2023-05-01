@@ -109,7 +109,7 @@ var/global/list/overmap_helm_computers
 		set_operator(user)
 		return 1
 
-/obj/machinery/computer/ship/helm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/ship/helm/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	var/data[0]
 
 	if(!linked)
@@ -163,7 +163,7 @@ var/global/list/overmap_helm_computers
 
 		ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 		if (!ui)
-			ui = new(user, src, ui_key, "helm.tmpl", "[linked.name] Helm Control", 565, 545, nref = src)
+			ui = new(user, src, ui_key, "helm", "[linked.name] Helm Control", 565, 545, nref = src)
 			ui.set_initial_data(data)
 			ui.open()
 			ui.set_auto_update(1)
@@ -358,7 +358,7 @@ var/global/list/overmap_helm_computers
 	icon_keyboard = "generic_key"
 	icon_screen = "helm"
 
-/obj/machinery/computer/ship/navigation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/ship/navigation/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(!linked)
 		display_reconnect_dialog(user, "Navigation")
 		return
@@ -385,7 +385,7 @@ var/global/list/overmap_helm_computers
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "nav.tmpl", "[linked.name] Navigation Screen", 380, 530, nref = src)
+		ui = new(user, src, ui_key, "nav", "[linked.name] Navigation Screen", 380, 530, nref = src)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

@@ -3,7 +3,7 @@
 	icon = 'icons/obj/machines/server.dmi'
 	icon_state = "server"
 	network_device_type =  /datum/extension/network_device/mainframe
-	main_template = "network_mainframe.tmpl"
+	main_template = "network_mainframe"
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	stat_immune = 0

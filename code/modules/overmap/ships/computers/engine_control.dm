@@ -6,7 +6,7 @@
 	icon_screen = "engines"
 	var/display_state = "status"
 
-/obj/machinery/computer/ship/engines/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/ship/engines/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(!linked)
 		display_reconnect_dialog(user, "ship control systems")
 		return
@@ -43,7 +43,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "engines_control.tmpl", "[linked.name] Engines Control", 390, 530)
+		ui = new(user, src, ui_key, "engines_control", "[linked.name] Engines Control", 390, 530)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

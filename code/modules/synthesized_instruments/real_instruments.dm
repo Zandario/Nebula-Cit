@@ -142,7 +142,7 @@
 
 
 
-/datum/real_instrument/proc/ui_call(mob/user, ui_key, var/datum/nanoui/ui = null, var/force_open = 0)
+/datum/real_instrument/proc/ui_call(mob/user, ui_key, datum/nanoui/ui, var/force_open = 0)
 	var/list/data
 	data = list(
 		"playback" = list(
@@ -185,7 +185,7 @@
 
 	ui =  SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new (user, src.owner, ui_key, "synthesizer.tmpl", owner.name, 600, 800)
+		ui = new (user, src.owner, ui_key, "synthesizer", owner.name, 600, 800)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -230,7 +230,7 @@
 	src.ui_interact(user)
 
 
-/obj/structure/synthesized_instrument/ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/structure/synthesized_instrument/ui_interact(mob/user, ui_key = "instrument", datum/nanoui/ui, var/force_open = 0)
 	real_instrument.ui_call(user,ui_key,ui,force_open)
 
 
@@ -285,7 +285,7 @@
 	src.ui_interact(user)
 
 
-/obj/item/synthesized_instrument/ui_interact(mob/user, ui_key = "instrument", var/datum/nanoui/ui = null, var/force_open = 0)
+/obj/item/synthesized_instrument/ui_interact(mob/user, ui_key = "instrument", datum/nanoui/ui, var/force_open = 0)
 	real_instrument.ui_call(user,ui_key,ui,force_open)
 
 

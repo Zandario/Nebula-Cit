@@ -59,7 +59,7 @@
 
 // ui_interact handles transfer of data to NanoUI. Keep in mind that data you pass from here is actually sent to the client. In other words, don't send anything you don't want a client
 // to see, and don't send unnecessarily large amounts of data (due to laginess).
-/datum/nano_module/arcade_classic/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/arcade_classic/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/list/data = host.initial_data()
 
 	data["player_health"] = player_health
@@ -72,7 +72,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "arcade_classic.tmpl", "Defeat [enemy_name]", 500, 350, state = state)
+		ui = new(user, src, ui_key, "arcade_classic", "Defeat [enemy_name]", 500, 350, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)

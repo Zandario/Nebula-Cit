@@ -292,12 +292,12 @@ var/global/list/all_gps_units = list()
 	else
 		.["no_signals"] = TRUE
 
-/obj/item/gps/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, var/master_ui = null, var/datum/topic_state/state = global.default_topic_state)
+/obj/item/gps/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, var/master_ui = null, datum/topic_state/state = global.default_topic_state)
 
 	var/data = ui_data()
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "gps.tmpl", name, 500, 300, master_ui = master_ui, state = state)
+		ui = new(user, src, ui_key, "gps", name, 500, 300, master_ui = master_ui, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

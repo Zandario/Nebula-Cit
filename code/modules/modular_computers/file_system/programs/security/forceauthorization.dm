@@ -22,7 +22,7 @@
 	var/datum/computer_network/gun_net = istype(S) ? S.get_computer_network() : G.get_network()
 	return our_net == gun_net
 
-/datum/nano_module/program/forceauthorization/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/forceauthorization/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/list/data = host.initial_data()
 	data["is_silicon_usr"] = issilicon(user)
 
@@ -63,7 +63,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "forceauthorization.tmpl", name, 700, 450, state = state)
+		ui = new(user, src, ui_key, "forceauthorization", name, 700, 450, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

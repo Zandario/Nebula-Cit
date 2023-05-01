@@ -506,7 +506,7 @@ var/global/list/all_apcs = list()
 	ui_interact(user)
 	return TRUE
 
-/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(!user)
 		return
 	var/obj/item/cell/cell = get_cell()
@@ -573,7 +573,7 @@ var/global/list/all_apcs = list()
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "apc.tmpl", "[area? area.proper_name : "ERROR"] - APC", 520, data["siliconUser"] ? 465 : 440)
+		ui = new(user, src, ui_key, "apc", "[area? area.proper_name : "ERROR"] - APC", 520, data["siliconUser"] ? 465 : 440)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

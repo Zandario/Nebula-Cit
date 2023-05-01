@@ -16,7 +16,7 @@
 	var/is_centcom = 0
 	var/show_assignments = 0
 
-/datum/nano_module/program/card_mod/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/card_mod/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/list/data = host.initial_data()
 	var/obj/item/stock_parts/computer/card_slot/card_slot = program.computer.get_component(PART_CARD)
 
@@ -91,7 +91,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "identification_computer.tmpl", name, 600, 700, state = state)
+		ui = new(user, src, ui_key, "identification_computer", name, 600, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

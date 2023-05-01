@@ -20,7 +20,7 @@
 	var/datum/computer_file/data/email_message/current_message = null
 	var/error = ""
 
-/datum/nano_module/program/email_administration/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/email_administration/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/topic_state/state = global.default_topic_state)
 	var/list/data = host.initial_data()
 
 	data += "skill_fail"
@@ -68,7 +68,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "email_administration.tmpl", "Email Administration Utility", 600, 450, state = state)
+		ui = new(user, src, ui_key, "email_administration", "Email Administration Utility", 600, 450, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = 1
 		ui.set_auto_update(1)

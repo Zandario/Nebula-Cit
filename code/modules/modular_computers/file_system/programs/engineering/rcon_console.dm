@@ -23,7 +23,7 @@
 	var/hide_SMES_details = 0
 	var/hide_breakers = 0
 
-/datum/nano_module/program/rcon/ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=1, var/datum/topic_state/state = global.default_topic_state)
+/datum/nano_module/program/rcon/ui_interact(mob/user, ui_key = "rcon", datum/nanoui/ui=null, force_open=1, datum/topic_state/state = global.default_topic_state)
 	FindDevices() // Update our devices list
 	var/list/data = host.initial_data()
 
@@ -56,7 +56,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "rcon.tmpl", "RCON Console", 600, 400, state = state)
+		ui = new(user, src, ui_key, "rcon", "RCON Console", 600, 400, state = state)
 		if(host.update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)
