@@ -88,7 +88,7 @@
 
 	build_inventory(populate_parts)
 	return INITIALIZE_HINT_LATELOAD
-	
+
 /obj/machinery/vending/LateInitialize()
 	..()
 	update_icon()
@@ -300,7 +300,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "vending_machine.tmpl", name, 520, 600)
+		ui = new(user, src, ui_key, "vending_machine.jst", name, 520, 600)
 		ui.set_initial_data(data)
 		ui.open()
 

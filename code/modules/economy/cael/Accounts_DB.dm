@@ -89,7 +89,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "accounts_terminal.tmpl", src.name, 400, 640)
+		ui = new(user, src, ui_key, "accounts_terminal.jst", src.name, 400, 640)
 		ui.set_initial_data(data)
 		ui.open()
 

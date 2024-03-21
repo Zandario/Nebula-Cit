@@ -5,7 +5,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/main_template = "network_mainframe.tmpl"
+	var/main_template = "network_mainframe.jst"
 	var/network_device_type =  /datum/extension/network_device
 	var/error
 

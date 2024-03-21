@@ -10,7 +10,7 @@
 	construct_state = /decl/machine_construction/default/panel_closed
 	atom_flags =  ATOM_FLAG_CLIMBABLE
 
-	var/ui_template = "pointdefense_control.tmpl"
+	var/ui_template = "pointdefense_control.jst"
 	var/initial_id_tag
 	var/list/targets = list()
 

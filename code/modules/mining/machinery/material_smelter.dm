@@ -3,7 +3,7 @@
 /obj/machinery/material_processing/smeltery
 	name = "electric smelter"
 	icon_state = "furnace"
-	use_ui_template = "material_processing_smeltery.tmpl"
+	use_ui_template = "material_processing_smeltery.jst"
 	atom_flags = ATOM_FLAG_CLIMBABLE | ATOM_FLAG_OPEN_CONTAINER
 	var/show_all_materials = FALSE
 	var/list/casting

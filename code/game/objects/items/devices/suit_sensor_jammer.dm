@@ -118,7 +118,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "suit_sensor_jammer.tmpl", "Sensor Jammer", 300, 640)
+		ui = new(user, src, ui_key, "suit_sensor_jammer.jst", "Sensor Jammer", 300, 640)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

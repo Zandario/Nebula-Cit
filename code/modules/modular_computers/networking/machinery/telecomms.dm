@@ -258,7 +258,7 @@ var/global/list/telecomms_hubs = list()
 	data["channels"] = data_channels
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "telecomms_hub.tmpl", "Telecommunications Hub", 700, 400)
+		ui = new(user, src, ui_key, "telecomms_hub.jst", "Telecommunications Hub", 700, 400)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

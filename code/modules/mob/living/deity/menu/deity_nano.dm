@@ -23,7 +23,7 @@
 	nano_data["regen"] = power_per_regen
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, nano_data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "deity.tmpl", "Deity Menu", 650, 600, state = uistate)
+		ui = new(user, src, ui_key, "deity.jst", "Deity Menu", 650, 600, state = uistate)
 		ui.set_initial_data(nano_data)
 		ui.open()
 		ui.set_auto_update(TRUE)

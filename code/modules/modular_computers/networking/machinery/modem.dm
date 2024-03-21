@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/tcomms/hub.dmi'
 	icon_state = "hub"
 	network_device_type =  /datum/extension/network_device/modem
-	main_template = "network_modem.tmpl"
+	main_template = "network_modem.jst"
 	construct_state = /decl/machine_construction/default/panel_closed
 	uncreated_component_parts = null
 	stat_immune = 0
@@ -47,5 +47,5 @@
 		fdata["name"] = feature
 		fdata["enabled"] = M.allowed_features & feature_options[feature]
 		features.Add(list(fdata))
-	
+
 	.["features"] = features

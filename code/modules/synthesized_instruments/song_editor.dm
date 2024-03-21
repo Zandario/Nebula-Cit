@@ -43,7 +43,7 @@
 
 	ui =  SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new (user, src, ui_key, "song_editor.tmpl", "Song Editor", 550, 600)
+		ui = new (user, src, ui_key, "song_editor.jst", "Song Editor", 550, 600)
 		ui.set_initial_data(data)
 		ui.open()
 

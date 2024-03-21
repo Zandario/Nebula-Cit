@@ -51,7 +51,7 @@
 	data["systemname"] = name
 	get_console_data()
 	if(!ui)
-		ui = new(user, src, ui_key, "atmosconsole.tmpl", data["systemname"], 800, 800)
+		ui = new(user, src, ui_key, "atmosconsole.jst", data["systemname"], 800, 800)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

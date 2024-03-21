@@ -65,7 +65,7 @@ nanoui is used to open and update nano browser uis
   * @param nuser /mob The mob who has opened/owns this ui
   * @param nsrc_object /obj|/mob The obj or mob which this ui belongs to
   * @param nui_key string A string key to use for this ui. Allows for multiple unique uis on one src_oject
-  * @param ntemplate string The filename of the template file from /nano/templates (e.g. "my_template.tmpl")
+  * @param ntemplate string The filename of the template file from /nano/templates (e.g. "my_template.jst")
   * @param ntitle string The title of this ui
   * @param nwidth int the width of the ui window
   * @param nheight int the height of the ui window
@@ -266,7 +266,7 @@ nanoui is used to open and update nano browser uis
   * These must be added before the UI has been opened, adding after that will have no effect
   *
   * @param key string The key which is used to reference this template in the frontend
-  * @param filename string The name of the template file from /nano/templates (e.g. "my_template.tmpl")
+  * @param filename string The name of the template file from /nano/templates (e.g. "my_template.jst")
   *
   * @return nothing
   */
@@ -277,7 +277,7 @@ nanoui is used to open and update nano browser uis
   * Set the layout key for use in the frontend Javascript
   * The layout key is the basic layout key for the page
   * Two files are loaded on the client based on the layout key varable:
-  *     -> a template in /nano/templates with the filename "layout_<layout_key>.tmpl
+  *     -> a template in /nano/templates with the filename "layout_<layout_key>.jst
   *     -> a CSS stylesheet in /nano/css with the filename "layout_<layout_key>.css
   *
   * @param nlayout string The layout key to use
@@ -356,9 +356,9 @@ nanoui is used to open and update nano browser uis
 
 	// before the UI opens, add the layout files based on the layout key
 	add_stylesheet("layout_[layout_key].css")
-	add_template("layout", "layout_[layout_key].tmpl")
+	add_template("layout", "layout_[layout_key].jst")
 	if (layout_header_key)
-		add_template("layoutHeader", "layout_[layout_header_key].tmpl")
+		add_template("layoutHeader", "layout_[layout_header_key].jst")
 
 	var/head_content = ""
 

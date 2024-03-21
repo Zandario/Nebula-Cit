@@ -111,7 +111,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data)
 	if (!ui)
-		ui = new(user, src, ui_key, "turret.tmpl", "Turret Controls", 600, 600, state = state)
+		ui = new(user, src, ui_key, "turret.jst", "Turret Controls", 600, 600, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

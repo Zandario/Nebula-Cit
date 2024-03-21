@@ -256,7 +256,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		var/atom/A = holder
-		ui = new(user, src, ui_key, "network_machine_settings.tmpl", capitalize(A.name), 500, 500)
+		ui = new(user, src, ui_key, "network_machine_settings.jst", capitalize(A.name), 500, 500)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)

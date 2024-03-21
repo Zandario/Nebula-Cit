@@ -117,7 +117,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "omni_filter.tmpl", "Omni Filter Control", 550, 550)
+		ui = new(user, src, ui_key, "omni_filter.jst", "Omni Filter Control", 550, 550)
 		ui.set_initial_data(data)
 
 		ui.open()

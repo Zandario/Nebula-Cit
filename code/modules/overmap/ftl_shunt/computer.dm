@@ -138,7 +138,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "ftl_computer.tmpl", "[linked.name] Superluminal Shunt Control", 420, 530, src)
+		ui = new(user, src, ui_key, "ftl_computer.jst", "[linked.name] Superluminal Shunt Control", 420, 530, src)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -269,5 +269,3 @@
 			jump_plot_timer = null
 			plotting_jump = FALSE
 			ping("Jump plotting cancelled!")
-
-

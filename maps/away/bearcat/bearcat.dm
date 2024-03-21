@@ -65,7 +65,7 @@
 /obj/machinery/computer/shuttle_control/lift
 	name = "cargo lift controls"
 	shuttle_tag = "Cargo Lift"
-	ui_template = "shuttle_control_console_lift.tmpl"
+	ui_template = "shuttle_control_console_lift.jst"
 	icon_state = "tiny"
 	icon_keyboard = "tiny_keyboard"
 	icon_screen = "lift"

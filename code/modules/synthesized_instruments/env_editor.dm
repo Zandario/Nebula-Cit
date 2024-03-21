@@ -22,7 +22,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new (user, src, ui_key, "env_editor.tmpl", "Environment Editor", 300, 800)
+		ui = new (user, src, ui_key, "env_editor.jst", "Environment Editor", 300, 800)
 		ui.set_initial_data(data)
 		ui.open()
 
