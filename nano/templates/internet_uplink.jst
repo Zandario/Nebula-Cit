@@ -27,7 +27,7 @@
 		Temperature:
 	</div>
 	<div class="itemContent">
-		{{:data.temperature}} / {{:data.max_temperature}} K 
+		{{:data.temperature}} / {{:data.max_temperature}} K
 	</div>
 </div>
 <hr>
@@ -44,10 +44,10 @@
 		Permitted Networks
 	</div>
 	<div class="itemContent style=width: 100%;">
-		<div class="statusDisplay" style="min-height: 120px;"> 
-			{{for data.permitted}} 
-				{{:value}}<br> 
-			{{/for}} 
+		<div class="statusDisplay" style="min-height: 120px;">
+			{{for data.permitted}}
+				{{:value}}<br>
+			{{/for}}
 		</div>
 		{{:helper.link('Add/Remove Network', '', {'toggle_permitted_network' : 1})}}
 	</div>

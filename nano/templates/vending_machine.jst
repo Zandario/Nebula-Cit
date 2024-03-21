@@ -1,5 +1,5 @@
-<!-- 
-	Interface for vending machines 
+<!--
+	Interface for vending machines
 	See: code/game/machinery/vending.dm
 -->
 
@@ -35,7 +35,7 @@
 {{if data.coin}}
 	<h2>Coin</h2>
 	<div class='item'>
-		<div class='itemLabel'>Coin deposited:</div> 
+		<div class='itemLabel'>Coin deposited:</div>
 		<div class='itemContent'>{{:helper.link(data.coin, 'eject', {'remove_coin' : 1})}}</div>
 	</div>
 {{/if}}
@@ -47,9 +47,9 @@
 			<div class='itemLabel'>Charge:</div> <div class='itemContent'>{{:data.price}}</div>
 		</div>
 		<div class='statusDisplay' style='overflow: auto;'>
-			{{if data.message_err}} 
+			{{if data.message_err}}
 				<span class='uiIcon16 icon-alert' ></span>
-			{{/if}} 
+			{{/if}}
 			{{:data.message}}
 		</div>
 		<div class='item'>

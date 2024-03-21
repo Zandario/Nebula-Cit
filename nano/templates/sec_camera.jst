@@ -1,16 +1,16 @@
 <div class='item'>
-    {{:helper.link('Show Map', 'pin-s', {'showMap' : 1})}}
-    {{:helper.link('Reset', 'refresh', {'reset' : 1})}}
+	{{:helper.link('Show Map', 'pin-s', {'showMap' : 1})}}
+	{{:helper.link('Reset', 'refresh', {'reset' : 1})}}
 	{{:helper.link('View Camera', null, {'view_camera' : 1})}}
 </div>
 
 <div class='item'>
-    <div class='itemLabel'>Current Camera:</div>
-    {{if data.current_camera}}
-        <div class='itemContentWide'><b>{{:data.current_camera.display_name}}</b></div>
-    {{else}}
-        <div class='itemContentWide'>None</div>
-    {{/if}}
+	<div class='itemLabel'>Current Camera:</div>
+	{{if data.current_camera}}
+		<div class='itemContentWide'><b>{{:data.current_camera.display_name}}</b></div>
+	{{else}}
+		<div class='itemContentWide'>None</div>
+	{{/if}}
 </div>
 
 <div class='item'>

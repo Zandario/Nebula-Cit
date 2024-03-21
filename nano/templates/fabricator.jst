@@ -1,5 +1,5 @@
 <!-- --------------------------------------------------------------------------------------------
-	Include Shared Helper Functions 
+	Include Shared Helper Functions
 -- --------------------------------------------------------------------------------------------->
 {{#def.fab_shared}}
 
@@ -11,12 +11,12 @@
 
 {{if data.functional}}
 	<!--Collapsable list-->
-	<dl class='collapsableList'> 
+	<dl class='collapsableList'>
 		{{ fab_resources_table(data.expand_resources, data.material_storage); }}
 		{{ fab_construction_queue(data.expand_queue, data.build_queue, data.current_build); }}
 		{{ fab_configuration( data.skip_config, data.expand_config, data); }}
 		{{ fab_display_filter( data.category, data.filtering, data.hide_categories); }}
-	</dl> 
+	</dl>
 
 	<!--Build options list-->
 	{{ fab_build_options( data.build_options ); }}

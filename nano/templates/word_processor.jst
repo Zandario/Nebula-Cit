@@ -6,23 +6,22 @@
 {{else}}
 	<h2>Document: {{:data.filename}}</h2>
 	<div class='item'>
-	{{:helper.link('NEW', null, { "PRG_newfile" : 1 })}}
-	{{:helper.link('LOAD', null, { "PRG_openfile" : 1 })}}
-	{{:helper.link('SAVE', null, { "PRG_savefile" : 1 })}}
-	{{:helper.link('SAVE AS', null, { "PRG_saveasfile" : 1 })}}
+		{{:helper.link('NEW', null, { "PRG_newfile" : 1 })}}
+		{{:helper.link('LOAD', null, { "PRG_openfile" : 1 })}}
+		{{:helper.link('SAVE', null, { "PRG_savefile" : 1 })}}
+		{{:helper.link('SAVE AS', null, { "PRG_saveasfile" : 1 })}}
 	</div>
 	<div class='item'>
-	{{:helper.link('EDIT', null, { "PRG_editfile" : 1 })}}
-	{{:helper.link('PREVIEW', null, { "PRG_txtrpeview" : 1 }, data.filedata ? null : 'disabled')}}
-	{{:helper.link('FORMATTING HELP', null, { "PRG_taghelp" : 1 })}}
-	{{:helper.link('PRINT', null, { "PRG_printfile" : 1 })}}
+		{{:helper.link('EDIT', null, { "PRG_editfile" : 1 })}}
+		{{:helper.link('PREVIEW', null, { "PRG_txtrpeview" : 1 }, data.filedata ? null : 'disabled')}}
+		{{:helper.link('FORMATTING HELP', null, { "PRG_taghelp" : 1 })}}
+		{{:helper.link('PRINT', null, { "PRG_printfile" : 1 })}}
 	</div><hr>
 	<div class='block'>
-	{{if data.filedata}}
-		{{:data.filedata}}
-	{{else}}
-		<i>No file data!</i>
-	{{/if}}
+		{{if data.filedata}}
+			{{:data.filedata}}
+		{{else}}
+			<i>No file data!</i>
+		{{/if}}
 	</div>
 {{/if}}
-

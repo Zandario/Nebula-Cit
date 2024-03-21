@@ -3,7 +3,7 @@
 </div>
 <div class='item'>
 	<div class='itemLabel'>
-		Filter term: 
+		Filter term:
 	</div>
 	<div class='itemContent'>
 		{{:helper.link(data.filter, null, {'filter_set' : 1})}}
@@ -11,16 +11,16 @@
 </div>
 <div class='item'>
 	{{for data.alarmsAlert}}
-        {{:helper.link(value.name, null, {'alarm' : value.ref}, null, 'redButton')}}
-    {{/for}}
+		{{:helper.link(value.name, null, {'alarm' : value.ref}, null, 'redButton')}}
+	{{/for}}
 </div>
 <div class='item'>
-    {{for data.alarmsDanger}}
-        {{:helper.link(value.name, null, {'alarm' : value.ref}, null, 'yellowButton')}}
-    {{/for}}
+	{{for data.alarmsDanger}}
+		{{:helper.link(value.name, null, {'alarm' : value.ref}, null, 'yellowButton')}}
+	{{/for}}
 </div>
 <div class='item'>
-    {{for data.alarms}}
-        {{:helper.link(value.name, null, {'alarm' : value.ref}, null, null)}}
-    {{/for}}
+	{{for data.alarms}}
+		{{:helper.link(value.name, null, {'alarm' : value.ref}, null, null)}}
+	{{/for}}
 </div>

@@ -6,9 +6,9 @@
 			Battery status
 		</div>
 		<div class="itemContent">
-            {{if value.active}}
+			{{if value.active}}
 				Online.<br/>{{:helper.link('Shut down.', null, {'toggle_active': value.ref})}}
-			 {{else}}
+			{{else}}
 				Offline.<br/>{{:helper.link('Start up.', null, {'toggle_active': value.ref})}}
 			{{/if}}
 		</div>
@@ -45,5 +45,5 @@
 			No weapon systems detected. Please check network connection.
 		</div>
 	</div>
-    <hr/>
+	<hr/>
 {{/for}}

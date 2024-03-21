@@ -41,7 +41,7 @@
 		<tr class='candystripe'>
 			<th>SERVER
 			<th colspan=2> ROLES
-			
+
 		{{for data.mainframes}}
 			<tr class='candystripe'>
 				<td width="40%">{{:value.name}}
@@ -55,13 +55,13 @@
 	{{if data.logs}}
 		{{for data.logs}}
 			<div class="itemLabel">
-				SERVER: 
+				SERVER:
 			</div>
 			<div class="itemContent">
 				{{:value.server}}
 			</div>
 			<div class="itemLabel">
-				LOG LIMIT: 
+				LOG LIMIT:
 			</div>
 			<div class="itemContent">
 				{{:helper.link(value.maxlogs, null, {'updatemaxlogs' : value.ref})}}
@@ -93,7 +93,7 @@
 			<div><i>Consult network logs for details</i></div>
 			{{:helper.link("RESET", null, { 'reset_alarm' : 1 })}}
 		</div>
-	{{/if}} 
+	{{/if}}
 	<h3>FIREWALL CONFIGURATION</h3>
 	<table cellpadding=3>
 		<tr class='candystripe'>
@@ -118,4 +118,4 @@
 {{if data.terminal}}
 	<h1>MANUAL SYSTEM ACCESS</h1>
 	{{:helper.link('ACTIVATE TERMINAL', null, {'PC_terminal' : 1})}}
-{{/if}} 
+{{/if}}

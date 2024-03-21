@@ -1,6 +1,6 @@
 <div class="item">
-    {{:helper.link('Overall info', 'note', {'state' :'status'}, null, data.state == 'status' ? 'selected' : null)}}
-    {{:helper.link('Details', 'note', {'state' : 'engines'}, null, data.state == 'engines' ? 'selected' : null)}}
+	{{:helper.link('Overall info', 'note', {'state' :'status'}, null, data.state == 'status' ? 'selected' : null)}}
+	{{:helper.link('Details', 'note', {'state' : 'engines'}, null, data.state == 'engines' ? 'selected' : null)}}
 </div>
 <div class="item">
 	<div class='item'>
@@ -51,15 +51,15 @@
 						{{:helper.link(value.eng_on ? 'Shutdown' : 'Power up', 'power', { 'toggle' : 1, 'engine' : value.eng_reference }, null, value.eng_on ? 'linkOn' : value.booting ? 'yellowButton' : null)}}
 				</div>
 			<div class='statusDisplay'>
-			  <div class='item'>
+			<div class='item'>
 				<div class="itemLabel">
 					<span class='average'>Type:</span>
 				</div>
 				<div class="itemContent">
 					<span class='white'>{{:value.eng_type}}</span>
 				</div>
-			  </div>
-			  <div class='item'>
+			</div>
+			<div class='item'>
 				<div class="itemLabel">
 					<span class='average'>Status:</span>
 				</div>
@@ -67,16 +67,16 @@
 					<span class='{{:value.eng_on ? 'good' : value.booting ? 'burn' : 'bad'}}'>{{:value.eng_on ? 'Online' : value.booting ? 'Booting' : 'Offline'}}</span><br>
 					<span class='white'>{{:value.eng_status}}</span>
 				</div>
-			  </div>
-			  <div class='item'>
+			</div>
+			<div class='item'>
 				<div class="itemLabel">
 					<span class='average'>Max exhaust velocity:</span>
 				</div>
 				<div class="itemContent">
 					<span class='white'>{{:value.eng_thrust}}</span>
 				</div>
-			  </div>
-			  <div class='item'>
+			</div>
+			<div class='item'>
 				<div class="itemLabel">
 					<span class='average'>Volume limit:</span>
 				</div>
@@ -85,8 +85,8 @@
 					{{:helper.link(value.eng_thrust_limiter+'%', null, { 'set_limit' : 1, 'engine' : value.eng_reference }, null, null)}}
 					{{:helper.link('', 'circle-minus', { 'limit' : -0.1, 'engine' : value.eng_reference }, null, null)}}
 				</div>
-			  </div>
-		  </div>
+			</div>
+		</div>
 		{{/for}}
 	{{/if}}
 {{/if}}
