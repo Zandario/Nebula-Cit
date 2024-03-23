@@ -10,37 +10,37 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 */
 
 
-// Amount of time(ds) MAX to send per asset, if this get exceeded we cancel the sleeping.
-// This is doubled for the first asset, then added per asset after
+/// Amount of time(ds) MAX to send per asset, if this get exceeded we cancel the sleeping.
+/// This is doubled for the first asset, then added per asset after
 #define ASSET_CACHE_SEND_TIMEOUT 7
 
-//When sending mutiple assets, how many before we give the client a quaint little sending resources message
+/// When sending mutiple assets, how many before we give the client a quaint little sending resources message
 #define ASSET_CACHE_TELL_CLIENT_AMOUNT 8
 
 /client
-	var/list/cache = list() // List of all assets sent to this client by the asset cache.
-	var/list/completed_asset_jobs = list() // List of all completed jobs, awaiting acknowledgement.
+	var/list/cache = list() //! List of all assets sent to this client by the asset cache.
+	var/list/completed_asset_jobs = list() //! List of all completed jobs, awaiting acknowledgement.
 	var/list/sending = list()
-	var/last_asset_job = 0 // Last job done.
+	var/last_asset_job = 0 //! Last job done.
 
-//This proc sends the asset to the client, but only if it needs it.
-//This proc blocks(sleeps) unless verify is set to false
+/// This proc sends the asset to the client, but only if it needs it.
+/// This proc blocks(sleeps) unless verify is set to false
 /proc/send_asset(var/client/client, var/asset_name, var/verify = TRUE, var/check_cache = TRUE)
 	client = client?.get_client()
 	if(!client)
 		return FALSE
 
 	if(check_cache && (client.cache.Find(asset_name) || client.sending.Find(asset_name)))
-		return 0
+		return FALSE
 
 	var/decl/asset_cache/asset_cache = GET_DECL(/decl/asset_cache)
 	send_rsc(client, asset_cache.cache[asset_name], asset_name)
 	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
 			client.cache += asset_name
-		return 1
+		return TRUE
 	if (!client)
-		return 0
+		return FALSE
 
 	client.sending |= asset_name
 	var/job = ++client.last_asset_job
@@ -58,7 +58,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		client.cache |= asset_name
 		client.completed_asset_jobs -= job
 
-	return 1
+	return TRUE
 
 //This proc blocks(sleeps) unless verify is set to false
 /proc/send_asset_list(var/client/client, var/list/asset_list, var/verify = TRUE)
@@ -68,7 +68,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 	var/list/unreceived = asset_list - (client.cache + client.sending)
 	if(!unreceived || !unreceived.len)
-		return 0
+		return FALSE
 	if (unreceived.len >= ASSET_CACHE_TELL_CLIENT_AMOUNT)
 		to_chat(client, "Sending resources...")
 	var/decl/asset_cache/asset_cache = GET_DECL(/decl/asset_cache)
@@ -79,9 +79,9 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
 			client.cache += unreceived
-		return 1
+		return TRUE
 	if (!client)
-		return 0
+		return FALSE
 	client.sending |= unreceived
 	var/job = ++client.last_asset_job
 
@@ -98,7 +98,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		client.cache |= unreceived
 		client.completed_asset_jobs -= job
 
-	return 1
+	return TRUE
 
 //This proc will download the files without clogging up the browse() queue, used for passively sending files on connection start.
 //The proc calls procs that sleep for long times.
@@ -147,82 +147,92 @@ var/global/list/asset_datums = list()
 		register_asset(asset_name, assets[asset_name])
 
 /datum/asset/simple/send(client)
-	send_asset_list(client,assets,verify)
+	send_asset_list(client, assets, verify)
 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 var/global/template_file_name = "all_templates.json"
 
-/datum/asset/nanoui
-	var/list/common = list()
+/datum/asset/simple/nanoui
 
 	var/list/common_dirs = list(
 		"nano/css/",
 		"nano/images/",
 		"nano/images/status_icons/",
 		"nano/images/modular_computers/",
+		"nano/public/",
 		"nano/js/"
 	)
 	var/list/uncommon_dirs = list(
 		"news_articles/images/"
 	)
-	var/template_dir = "nano/templates/"
+	var/list/template_dirs = list(
+		"nano/templates/",
+		"nano/templates/interfaces/",
+		"nano/templates/layouts/",
+	)
 	var/template_temp_dir = "data/"
 
-/datum/asset/nanoui/register()
+/datum/asset/simple/nanoui/register()
 	// Crawl the directories to find files.
-	for (var/path in common_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
-					common[filename] = fcopy_rsc(path + filename)
-					register_asset(filename, common[filename])
-	for (var/path in uncommon_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
-					register_asset(filename, fcopy_rsc(path + filename))
+	var/list/exts = list(
+		"js",
+		"css",
+		"html",
+		"gif",
+		"png",
+		"jpg",
+	)
 
+	// Handle common and uncommon paths.
+	for(var/path in directory_walk_exts(common_dirs, exts, 0))
+		assets[filepath_extract_name(path)] = file(path)
+
+	// Handle uncommon paths.
+	for(var/path in directory_walk_exts(uncommon_dirs, exts, 0))
+		assets[filepath_extract_name(path)] = file(path)
+
+	// Handle Templates.
 	merge_and_register_templates()
 
+	// Handle map images.
 	var/list/mapnames = list()
 	for(var/z in SSmapping.map_levels)
 		mapnames += map_image_file_name(z)
 
-	var/list/filenames = flist(MAP_IMAGE_PATH)
-	for(var/filename in filenames)
-		if(copytext(filename, length(filename)) != "/") // Ignore directories.
-			var/file_path = MAP_IMAGE_PATH + filename
-			if((filename in mapnames) && fexists(file_path))
-				common[filename] = fcopy_rsc(file_path)
-				register_asset(filename, common[filename])
+	for(var/path in directory_walk_exts(MAP_IMAGE_PATH, list("png"), 0))
+		var/filename = filepath_extract_name(path)
+		if((filename in mapnames) && fexists(path))
+			assets[filename] = file(path)
 
-/datum/asset/nanoui/proc/merge_and_register_templates()
-	var/list/templates = flist(template_dir)
-	for(var/filename in templates)
-		if(copytext(filename, length(filename)) != "/")
-			templates[filename] = replacetext(replacetext(file2text(template_dir + filename), "\n", ""), "\t", "")
-		else
-			templates -= filename
+	..()
+
+/datum/asset/simple/nanoui/proc/merge_and_register_templates()
+	var/list/templates = list()
+	for(var/path in directory_walk_exts(template_dirs, list("jst"), 0))
+		templates[filepath_extract_name(path)] = replacetext(replacetext(file2text(path), "\n", ""), "\t", "")
+
+	// Handle the compiled template collection.
 	var/full_file_name = template_temp_dir + global.template_file_name
 	if(fexists(full_file_name))
 		fdel(file(full_file_name))
+
 	var/template_file = file(full_file_name)
 	to_file(template_file, json_encode(templates))
-	register_asset(global.template_file_name, fcopy_rsc(template_file))
+	assets[global.template_file_name] = file(full_file_name)
 
-/datum/asset/nanoui/send(client, uncommon)
+
+/datum/asset/simple/nanoui/send(client, uncommon)
 	if(!islist(uncommon))
 		uncommon = list(uncommon)
 
 	send_asset_list(client, uncommon, FALSE)
-	send_asset_list(client, common, TRUE)
+	send_asset_list(client, assets, TRUE)
+
 	send_asset(client, global.template_file_name)
 
 // Note: this is intended for dev work, and is unsafe. Do not use outside of that.
-/datum/asset/nanoui/proc/recompute_and_resend_templates()
+/datum/asset/simple/nanoui/proc/recompute_and_resend_templates()
 	merge_and_register_templates()
 	for(var/client/C in clients)
 		if(C) // there are sleeps here, potentially
@@ -234,7 +244,7 @@ var/global/template_file_name = "all_templates.json"
 	set name = "Resend Nanoui Templates"
 	if(!check_rights(R_DEBUG))
 		return
-	var/datum/asset/nanoui/nano_asset = get_asset_datum(/datum/asset/nanoui)
+	var/datum/asset/simple/nanoui/nano_asset = get_asset_datum(/datum/asset/simple/nanoui)
 	if(nano_asset)
 		nano_asset.recompute_and_resend_templates()
 

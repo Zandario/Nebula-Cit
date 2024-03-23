@@ -1,8 +1,7 @@
-/datum/proc/nano_host()
-	return src
-
-/datum/proc/nano_container()
-	return src
+/**
+ * Base state and helpers for states. Just does some sanity checks,
+ * implement a proper state for in-depth checks.
+ */
 
 /datum/proc/CanUseTopic(var/mob/user, var/datum/topic_state/state = global.default_topic_state)
 	var/datum/src_object = nano_host()
@@ -24,9 +23,9 @@
 
 /mob/proc/shared_nano_interaction()
 	if (src.stat || !client)
-		return STATUS_CLOSE						// no updates, close the interface
+		return STATUS_CLOSE // no updates, close the interface
 	else if (incapacitated())
-		return STATUS_UPDATE					// update only (orange visibility)
+		return STATUS_UPDATE // update only (orange visibility)
 	return STATUS_INTERACTIVE
 
 /mob/living/silicon/ai/shared_nano_interaction()

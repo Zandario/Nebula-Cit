@@ -58,3 +58,7 @@
 #define MAX_KEYS_PER_KEYBIND 3
 ///Length of held key buffer
 #define HELD_KEY_BUFFER_LENGTH 15
+
+// LOG BROWSE TYPES
+#define BROWSE_ROOT_ALL_LOGS     1
+#define BROWSE_ROOT_CURRENT_LOGS 2

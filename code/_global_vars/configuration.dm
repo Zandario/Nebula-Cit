@@ -15,9 +15,6 @@ var/global/gravity_is_on = 1
 // Ideally, the connection dies when the server restarts (After feedback logging.).
 var/global/DBConnection/dbcon // General-purpose record database.
 
-// For FTP requests. (i.e. downloading runtime logs.)
-// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
-var/global/fileaccess_timer = 0
 var/global/custom_event_msg = null
 
  // Used for admin shenanigans.

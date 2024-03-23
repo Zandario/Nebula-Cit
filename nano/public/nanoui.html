@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script type="text/javascript">
+			function receiveUpdateData(jsonString) {
+				// We need both jQuery and NanoStateManager to be able to recieve data
+				// At the moment any data received before those libraries are loaded will be lost
+				if (typeof NanoStateManager != 'undefined' && typeof jQuery != 'undefined') {
+					NanoStateManager.receiveUpdateData(jsonString);
+				}
+				// else
+				// {
+				// 	alert('browser.recieveUpdateData failed due to jQuery or NanoStateManager being unavailiable.');
+				// }
+			}
+		</script>
+		<!-- nanoui:inline-js -->
+		<!-- nanoui:inline-css -->
+	</head>
+
+	<body
+		scroll="auto"
+		data-template-data='[nanoui:template_data_json]'
+		data-url-parameters='[nanoui:url_parameters_json]'
+		data-initial-data='[nanoui:initial_data_json]'
+	>
+		<div id="uiLayout"></div>
+		<noscript>
+			<div id="uiNoScript">
+				<h2>JAVASCRIPT REQUIRED</h2>
+				<div>Javascript is required in order to use this interface.</div>
+				<div>Please enable Javascript and restart the game.</div>
+			</div>
+		</noscript>
+	</body>
+</html>
