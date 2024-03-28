@@ -37,12 +37,12 @@
 			{{if jQuery.isEmptyObject(data.cooking_items) && jQuery.isEmptyObject(data.cooking_reagents)}}
 				<li>The microwave is empty!</li>
 			{{/if}}
-			{{props data.cooking_items :amt:name}}
+			{{for data.cooking_items :amt:name}}
 				<li>{{:helper.link(name + ' • ' + amt, null, {'action': 'ejectitem', 'target': name}, null, 'linkOn')}}</li>
-			{{/props}}
-			{{props data.cooking_reagents :amt:name}}
+			{{/for}}
+			{{for data.cooking_reagents :amt:name}}
 				<li>{{:helper.link(name + ' • ' + amt + ' units', null, {'action': 'ejectreagent', 'target': name}, null, 'linkOn')}}</li>
-			{{/props}}
+			{{/for}}
 		</ul>
 		<br>
 		<div class="item">

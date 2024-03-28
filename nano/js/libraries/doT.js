@@ -15,8 +15,10 @@
 	 * @namespace doT
 	 */
 	var doT = {
+		/** Name of the library */
+		name: "doT",
 		/** Version of the library */
-		version: "1.0.3-nanoui",
+		version: "1.1.1-nanoui",
 		/** Settings for the template engine */
 		templateSettings: {
 			evaluate: /\{\{([\s\S]+?)\}\}/g,
@@ -27,7 +29,6 @@
 			conditional: /\{\{\/?if\s*([\s\S]*?)\s*\}\}/g,
 			conditionalElse: /\{\{else\s*([\s\S]*?)\s*\}\}/g,
 			iterate: /\{\{\/?for\s*(?:\}\}|([\s\S]+?)\s*(?:\:\s*([\w$]+))?\s*(?:\:\s*([\w$]+))?\s*\}\})/g,
-			props: /\{\{\/?props\s*(?:\}\}|([\s\S]+?)\s*(?:\:\s*([\w$]+))?\s*(?:\:\s*([\w$]+))?\s*\}\})/g,
 			empty: /\{\{empty\}\}/g,
 			varname: "data, config, helper",
 			strip: true,
@@ -38,7 +39,8 @@
 		/** Function to compile a template */
 		template: undefined,
 		/** Function to compile a template for express */
-		compile: undefined
+		compile: undefined,
+		log: true,
 	}, _globals;
 
 	// Module export logic
@@ -150,15 +152,6 @@
 				var arrayName = "arr" + sid;
 				return "';var " + arrayName + "=" + iterate + ";if(" + arrayName + " && " + arrayName + ".length > 0){var " + vname + "," + iname + "=-1,l" + sid + "=" + arrayName + ".length-1;while(" + iname + "<l" + sid + "){"
 					+ vname + "=" + arrayName + "[" + iname + "+=1];out+='";
-			})
-			.replace(c.props || skip, function (m, iterate, vname, iname) {
-				if (!iterate) return "';} } out+='";
-				sid += 1;
-				vname = vname || "value";
-				iname = iname || "key";
-				iterate = unescape(iterate);
-				var objectName = "arr" + sid;
-				return "';var " + objectName + "=" + iterate + ";if(" + objectName + " && Object.size(" + objectName + ") > 0){var " + vname + ";for( var " + iname + " in " + objectName + "){ if (!" + objectName + ".hasOwnProperty(" + iname + ")) continue; " + vname + "=" + objectName + "[" + iname + "];out+='";
 			})
 			.replace(c.empty || skip, function (m) {
 				return "';}}else{if(true){out+='"; // The "if(true)" condition is required to account for the for tag closing with two brackets
